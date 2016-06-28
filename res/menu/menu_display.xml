@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/prev"
+        android:title="Previus"
+        android:icon="@drawable/icon_prev"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
+     
+      <item
+        android:id="@+id/next"
+        android:title="Next"
+        android:icon="@drawable/icon_next"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
+     <item
+        android:id="@+id/bookmark"
+        android:title="Bookmark"
+        android:icon="@drawable/icon_star"
+        android:orderInCategory="100"
+        android:showAsAction="always"/> 
+     
+
+</menu>

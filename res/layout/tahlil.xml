@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Tasbih" >
+
+    <TextView
+        android:id="@+id/artiTasbih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arabTasbih"
+        android:layout_marginTop="19dp"
+        android:text="Laa ilaaha illallah" />
+
+    <TextView
+        android:id="@+id/latinTasbih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/artiTasbih"
+        android:layout_below="@+id/artiTasbih"
+        android:layout_marginTop="23dp"
+        android:text="Tiada Tuhan Selain Allah" />
+
+    <TextView
+        android:id="@+id/countTahlil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="0"
+        android:textSize="36dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/arabTasbih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+         android:textSize="20dp"
+        android:text="لاَ اِلَهَ اِلاَّ اللّهُ" />
+
+    <ImageButton
+        android:id="@+id/BtResetTahlil"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/BtPlusTahlil"
+        android:layout_alignParentRight="true"
+        android:background="#ffffff"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_reset" />
+
+    <ImageButton
+        android:id="@+id/BtPlusTahlil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:background="#ffffff"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_plus" />
+
+    <ImageButton
+        android:id="@+id/BtSound"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/BtPlusTahlil"
+        android:layout_alignLeft="@+id/latinTasbih"
+        android:background="#ffffff"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_spund_on" />
+
+</RelativeLayout>

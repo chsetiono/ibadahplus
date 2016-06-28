@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <CheckBox
+        android:id="@+id/cbMaghrib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cbSubuh"
+        android:layout_below="@+id/cbDzuhur"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/cbIsya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cbMaghrib"
+        android:layout_alignBottom="@+id/cbMaghrib"
+        android:layout_alignLeft="@+id/cbDzuhur"
+        android:text="Isya" />
+
+    <SeekBar
+        android:id="@+id/sbDzuhur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sbSubuh"
+        android:layout_alignTop="@+id/textView4" />
+
+    <SeekBar
+        android:id="@+id/sbAshar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sbDzuhur"
+        android:layout_alignTop="@+id/textView5" />
+
+    <SeekBar
+        android:id="@+id/sbMaghrib1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sbAshar"
+        android:layout_below="@+id/sbAshar" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_below="@+id/sbMaghrib1"
+        android:text="Isya" />
+
+    <SeekBar
+        android:id="@+id/sbIsya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sbMaghrib1"
+        android:layout_alignTop="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/sbDzuhur"
+        android:text="Ashar" />
+
+    <SeekBar
+        android:id="@+id/sbSubuh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toRightOf="@+id/cbSubuh" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignTop="@+id/sbMaghrib1"
+        android:text="Maghrib" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/sbSubuh"
+        android:layout_marginLeft="14dp"
+        android:text="Dzuhur" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView2"
+        android:text="Subuh" />
+
+    <CheckBox
+        android:id="@+id/cbSubuh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:text="Subuh" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cbMaghrib"
+        android:layout_marginTop="14dp"
+        android:text="Koreksi Waktu Manual (Menit)" />
+
+    <Spinner
+        android:id="@+id/spMetode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="0dp"
+        android:layout_below="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Metode" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spMetode"
+        android:text="Perhitungan Ashar" />
+
+    <Spinner
+        android:id="@+id/spAshar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spAshar"
+        android:text="Notifikasi Adzan" />
+
+    <CheckBox
+        android:id="@+id/cbDzuhur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:text="Dzuhur" />
+
+    <CheckBox
+        android:id="@+id/cbAshar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cbDzuhur"
+        android:layout_alignBottom="@+id/cbDzuhur"
+        android:layout_toLeftOf="@+id/valueSubuh"
+        android:text="Ashar" />
+
+    <TextView
+        android:id="@+id/valueSubuh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/sbSubuh"
+        android:layout_marginRight="15dp"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/valueDzuhur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/valueSubuh"
+        android:layout_alignTop="@+id/sbDzuhur"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/valueAshar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/valueDzuhur"
+        android:layout_alignTop="@+id/sbAshar"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/valueMaghrib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/valueAshar"
+        android:layout_alignTop="@+id/sbMaghrib1"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/valueIsya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/valueMaghrib"
+        android:layout_alignTop="@+id/sbIsya"
+        android:text="0" />
+
+ </RelativeLayout>
+

@@ -1,0 +1,210 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <TextView
+        android:id="@+id/lokasi"
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Lokasi" />
+
+    <TextView
+        android:id="@+id/subuh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/imageDoa"
+        android:layout_below="@+id/lokasi"
+        android:textSize="16dp"
+        android:text="Subuh" />
+
+    <TextView
+        android:id="@+id/isya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/maghrb"
+        android:layout_alignBottom="@+id/maghrb"
+        android:layout_alignLeft="@+id/dzuhur"
+        android:textSize="16dp"
+        android:text="isya" />
+
+
+
+    <ImageButton
+        android:id="@+id/imageQuran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/maghrb"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon_quran" />
+
+    <ImageButton
+        android:id="@+id/imageNews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageKiblat"
+        android:layout_alignRight="@+id/ashar"
+        android:src="@drawable/icon_news" />
+
+    <TextView
+        android:id="@+id/ashar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/maghrb"
+        android:layout_alignParentRight="true"
+        android:textSize="16dp"
+        android:text="ashar" />
+
+    <TextView
+        android:id="@+id/dzuhur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/maghrb"
+        android:layout_alignRight="@+id/imageDzikir"
+        android:textSize="16dp"
+        android:text="Dzuhur" />
+
+    <TextView
+        android:id="@+id/maghrb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/subuh"
+        android:layout_below="@+id/subuh"
+        android:textSize="16dp"
+        android:text="Maghrib" />
+
+    <TextView
+        android:id="@+id/tvQuran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageQuran"
+        android:layout_below="@+id/imageQuran"
+        android:text="Quran"
+        android:textColor="@color/text_green" />
+
+    <TextView
+        android:id="@+id/tvKiblat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvQuran"
+        android:layout_alignBottom="@+id/tvQuran"
+        android:layout_alignLeft="@+id/imageKiblat"
+        android:text="Kiblat"
+        android:textColor="@color/text_green" />
+
+    <ImageButton
+        android:id="@+id/imageKiblat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvKiblat"
+        android:layout_alignLeft="@+id/imageDzikir"
+        android:src="@drawable/icon_kiblat" />
+
+    <ImageButton
+        android:id="@+id/imageDoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvQuran"
+        android:layout_below="@+id/tvQuran"
+        android:src="@drawable/icon_doa" />
+
+    <ImageButton
+        android:id="@+id/imageDzikir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvKiblat"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/icon_dzikir" />
+
+    <TextView
+        android:id="@+id/tvDoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageDoa"
+        android:layout_below="@+id/imageDoa"
+        android:text="Doa Harian"
+        android:textColor="@color/text_green" />
+
+    <TextView
+        android:id="@+id/tvDzikir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvDoa"
+        android:layout_alignBottom="@+id/tvDoa"
+        android:layout_alignLeft="@+id/imageDzikir"
+        android:text="Dzikir"
+        android:textColor="@color/text_green" />
+
+    <TextView
+        android:id="@+id/tvShalawat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvDzikir"
+        android:layout_alignBottom="@+id/tvDzikir"
+        android:layout_alignLeft="@+id/imageShalawat"
+        android:text="Shalawat"
+        android:textColor="@color/text_green" />
+
+    <ImageButton
+        android:id="@+id/imageZakat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvDoa"
+        android:layout_below="@+id/tvDoa"
+        android:src="@drawable/icon_zakat" />
+
+    <ImageButton
+        android:id="@+id/imageHadits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvDzikir"
+        android:layout_below="@+id/tvDzikir"
+        android:src="@drawable/icon_hadits" />
+
+    <TextView
+        android:id="@+id/tvZakat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageZakat"
+        android:layout_below="@+id/imageZakat"
+        android:text="Zakat Counter"
+        android:textColor="@color/text_green" />
+
+    <TextView
+        android:id="@+id/tvHadits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvZakat"
+        android:layout_alignBottom="@+id/tvZakat"
+        android:layout_alignLeft="@+id/imageHadits"
+        android:text="Sunnah"
+        android:textColor="@color/text_green" />
+
+    <ImageButton
+        android:id="@+id/imageShalawat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageNews"
+        android:layout_alignTop="@+id/imageDzikir"
+        android:src="@drawable/icon_sahalawat" />
+
+    <TextView
+        android:id="@+id/tvMasjid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imageNews"
+        android:text="Berita Islami"
+        android:textColor="@color/text_green" />
+
+</RelativeLayout>

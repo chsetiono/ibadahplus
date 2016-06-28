@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Ibadah</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_display_doa">DisplayDoa</string>
+    <string name="title_activity_dzikir_main">DzikirMain</string>
+    <string name="title_activity_istigfar">Istigfar</string>
+    <string name="title_activity_tasbih">Tasbih</string>
+    <string name="title_activity_tahmid">Tahmid</string>
+    <string name="title_activity_takbir">Takbir</string>
+    <string name="title_activity_tahlil">Tahlil</string>
+    <string name="title_activity_dzikir_shalat">DzikirShalat</string>
+    <string name="title_activity_shalawat">Shalawat</string>
+    <string name="title_activity_display_shalawat">DisplayShalawat</string>
+    <string name="title_activity_kiblat">Kiblat</string>
+    <string name="title_activity_jadwal_shalat">JadwalShalat</string>
+    <string name="title_activity_activity_setting_jadwal">Setting Jadwal</string>
+    <string name="title_activity_acitvity_find_location">AcitvityFindLocation</string>
+    <string name="title_activity_activity_quran">Al Quran</string>
+    <string name="title_activity_activity_display_surah">Display Surah</string>
+    <string name="title_activity_activity_sunnah">Sunnah Nabi</string>
+    <string name="title_activity_activity_display_sunnah">Display Sunnah</string>
+    <string name="title_activity_activity_kiblat">Display Sunnah</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_activity_kiblat">Kiblat</string>
+    <string name="title_activity_activity_masjid">Cari  Masjid</string>
+    <string name="google_api_key">AIzaSyAu24MS8S5gD95Mb1xsecp-t2kIm7ynlaE</string>
+
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Bookmark</item>
+        <item>Deteksi Lokasi</item>
+        <item>Setting</item>
+        <item>About</item>
+    </string-array>
+
+    <integer-array name="nav_drawer_icons">
+        <item>@drawable/icon_home</item>
+        <item>@drawable/favorite</item>
+        <item>@drawable/location</item>
+        <item>@drawable/settings</item>
+        <item>@drawable/info</item>
+    </integer-array>
+
+    <string-array name="place_type">
+        <item>airport</item>
+        <item>atm</item>
+        <item>bank</item>
+        <item>bus_station</item>
+        <item>church</item>
+        <item>doctor</item>
+        <item>hospital</item>
+        <item>mosque</item>
+        <item>movie_theater</item>
+        <item>hindu_temple</item>
+        <item>restaurant</item>
+    </string-array>
+    <string-array name="place_type_name">
+        <item>Airport</item>
+        <item>ATM</item>
+        <item>Bank</item>
+        <item>Bus Station</item>
+        <item>Church</item>
+        <item>Doctor</item>
+        <item>Hospital</item>
+        <item>Mosque</item>
+        <item>Movie Theater</item>
+        <item>Hindu Temple</item>
+        <item>Restaurant</item>
+    </string-array>
+
+    <string name="title_activity_activity_news">Berita Islami</string>
+
+</resources>

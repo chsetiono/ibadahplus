@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+   
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvIndo"
+        android:layout_below="@+id/tvIndo"
+        android:layout_marginTop="48dp" >
+    </TableRow>
+
+    <TextView
+        android:id="@+id/tvNomor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvIndo"
+        android:layout_alignParentLeft="true"
+        android:text="No"
+        android:textColor="@color/text_black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvArab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:hint="@string/title_activity_activity_quran"
+        android:text="TextView"
+        android:textColor="@color/text_black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvIndo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvArab"
+        android:layout_marginLeft="36dp"
+        android:layout_toRightOf="@+id/tvNomor"
+        android:text="TextView"
+        android:textColor="@color/text_black" />
+
+</RelativeLayout>
