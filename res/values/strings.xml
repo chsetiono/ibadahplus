@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">My Ibadah</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+   	<string name="app_name">My Ibadah</string>
     <string name="title_activity_display_doa">DisplayDoa</string>
     <string name="title_activity_dzikir_main">DzikirMain</string>
     <string name="title_activity_istigfar">Istigfar</string>
@@ -21,9 +19,7 @@
     <string name="title_activity_activity_quran">Al Quran</string>
     <string name="title_activity_activity_display_surah">Display Surah</string>
     <string name="title_activity_activity_sunnah">Sunnah Nabi</string>
-    <string name="title_activity_activity_display_sunnah">Display Sunnah</string>
-    <string name="title_activity_activity_kiblat">Display Sunnah</string>
-    <string name="action_settings">Settings</string>
+   <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>

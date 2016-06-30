@@ -38,7 +38,9 @@ public class ActivityNews extends Activity {
   listview = (ListView) findViewById(R.id.lvNews);
   setListViewAdapter();
   getDataFromInternet();
+  //listview.setOnItemClickListener(new ListClickHandler());
   
+
  }
 
  private void getDataFromInternet() {
@@ -49,7 +51,17 @@ public class ActivityNews extends Activity {
   listNews = new ArrayList<News>();
   adapter = new CustomListAdapter(this, R.layout.list_news, listNews);
   listview.setAdapter(adapter);
-  listview.setOnItemClickListener(new ListClickHandler());
+  /*
+  listview.setOnItemClickListener(new OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view,
+              int position, long id) {
+          Intent intent = new Intent(ActivityNews.this, ActivityDisplaySunnah.class);
+          startActivity(intent);    
+
+      }
+  });
+  */
  }
  
  //parse response data after asynctask finished
@@ -78,14 +90,14 @@ public class ActivityNews extends Activity {
 	  	@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position,
 					long arg3) {
-	  			/*
-				TextView listText = (TextView) view.findViewById(R.id.idDoa);
+	  			
+				TextView listText = (TextView) view.findViewById(R.id.author);
 		        String text = listText.getText().toString();
-				Intent intent = new Intent(ActivityNews.this, ActivityDisplayNews.class);
+				Intent intent = new Intent(getApplicationContext(), ActivityDisplayNews.class);
 		        intent.putExtra("id",text);
 		        startActivity(intent);  
-		        */
-	  			Toast.makeText(ActivityNews.this, "klik....", Toast.LENGTH_SHORT).show();
+		        
+	  			//Toast.makeText(ActivityNews.this, "klik....", Toast.LENGTH_SHORT).show();
 			}
 	  
 	}
