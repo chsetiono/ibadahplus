@@ -1338,16 +1338,17 @@ containing a value of this type.
         public static final int kiblat=0x7f0e000c;
         public static final int main=0x7f0e000d;
         public static final int menu_display=0x7f0e000e;
-        public static final int menu_display_surah=0x7f0e000f;
-        public static final int menu_options=0x7f0e0010;
-        public static final int menu_search=0x7f0e0011;
-        public static final int menu_setting_jadwal=0x7f0e0012;
-        public static final int setting_jadwal_save=0x7f0e0013;
-        public static final int shalawat=0x7f0e0014;
-        public static final int tahlil=0x7f0e0015;
-        public static final int tahmid=0x7f0e0016;
-        public static final int takbir=0x7f0e0017;
-        public static final int tasbih=0x7f0e0018;
+        public static final int menu_display_news=0x7f0e000f;
+        public static final int menu_display_surah=0x7f0e0010;
+        public static final int menu_options=0x7f0e0011;
+        public static final int menu_search=0x7f0e0012;
+        public static final int menu_setting_jadwal=0x7f0e0013;
+        public static final int setting_jadwal_save=0x7f0e0014;
+        public static final int shalawat=0x7f0e0015;
+        public static final int tahlil=0x7f0e0016;
+        public static final int tahmid=0x7f0e0017;
+        public static final int takbir=0x7f0e0018;
+        public static final int tasbih=0x7f0e0019;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

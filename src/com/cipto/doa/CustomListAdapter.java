@@ -46,7 +46,7 @@ public class CustomListAdapter extends ArrayAdapter<News> {
   final News news = getItem(position);
   
   holder.name.setText(news.getJudul());
-  holder.authorName.setText(news.getId());
+  //holder.authorName.setText(news.getId());
   Picasso.with(activity).load(news.getImageUrl()).into(holder.image);
  
   convertView.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +58,8 @@ public class CustomListAdapter extends ArrayAdapter<News> {
           intent.putExtra("judul",news.getJudul());
           intent.putExtra("isi",news.getIsi());
           intent.putExtra("imageUrl",news.getImageUrl());
+          intent.putExtra("tanggal",news.getTanggal());
+          intent.putExtra("sumber",news.getSumber());
           
     	  activity.getApplicationContext().startActivity(intent);
           

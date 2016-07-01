@@ -48,6 +48,7 @@ public class ActivityDisplayNews extends Activity {
 	TextView tanggal;
 	TextView sumber;
 	ImageView image;
+	
 	private WebView webView;
 	private final static String url = "http://www.ppiln.or.id/apitest.php?data=1";
 	@Override
@@ -70,6 +71,12 @@ public class ActivityDisplayNews extends Activity {
 		image=(ImageView) findViewById(R.id.imageNews);
 		isi=(TextView) findViewById(R.id.isiNews);
 		sumber=(TextView) findViewById(R.id.sumber);
+		judul.setText(judulVal);
+		tanggal.setText(tanggalVal);
+		isi.setText(isiVal);
+		sumber.setText("Sumber : "+sumberVal);
+		Picasso.with(this).load(imageUrl).fit().into(image);
+		
 	    dbAdapter = new DBAdapter(getApplicationContext());
 	    dbAdapter.openDataBase();
 		ActionBar ab = getActionBar(); 
@@ -85,14 +92,15 @@ public class ActivityDisplayNews extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_display, menu);
+	    inflater.inflate(R.menu.menu_display_news, menu);
 	    return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
 	  String id_sunnah= getIntent().getStringExtra("id");  
   	  switch (item.getItemId()) {
   	  	case R.id.bookmark:
-  			addBookmark(id_sunnah);
+  	  		Intent intent = getIntent();
+  			addBookmark(intent.getStringExtra("id"));
 	      break;
   	    case android.R.id.home:
           // app icon in action bar clicked; go home
@@ -109,11 +117,11 @@ public class ActivityDisplayNews extends Activity {
 	
 	public void addBookmark(String id){
 		 ContentValues values = new ContentValues();
-		 values.put("tipe","4");
+		 values.put("tipe","5");
  	     values.put("id_item",id);
  	     dbAdapter.insertBookmark(values);
  	     dbAdapter.close();
- 	     Toast.makeText(ActivityDisplayNews.this, "ditambahkan ke bookmark", Toast.LENGTH_LONG).show();
+ 	     Toast.makeText(ActivityDisplayNews.this, "ditambahkan ke bookmark", Toast.LENGTH_SHORT).show();
 	}
 	
 	private class ExecuteTask extends AsyncTask<Void, Void, String> {

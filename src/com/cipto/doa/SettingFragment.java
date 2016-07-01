@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -154,14 +155,20 @@ public class SettingFragment extends Fragment {
 		        public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 		        	String notifikasiSubuh="0";
 		        	String status="nonaktifkan";
+		        	String time=waktuShalat(1);
+	    		    int hour=Integer.valueOf(time.substring(0,2));
+	    		    int minute=Integer.valueOf(time.substring(3,5));
 		    		if(buttonView.isChecked()){
 		    			notifikasiSubuh="1";
 		    			status="aktifkan";
+		    			startAlarm(1, hour, minute);
+		    		}else{
+		    			stopAlarm(1);
 		    		}
 		    		ContentValues notifSubuh= new ContentValues();
 		    		notifSubuh.put("value",notifikasiSubuh);
 		    		dbAdapter.updateSetting(notifSubuh,6);
-		    		Toast.makeText(getActivity(),"Notifikasi Dzuhur di "+status, Toast.LENGTH_LONG).show();
+		    		Toast.makeText(getActivity(),"Adzan Subuh di"+status, Toast.LENGTH_SHORT).show();
 		        }
 		    }
 		    ); 
@@ -172,9 +179,15 @@ public class SettingFragment extends Fragment {
 		        public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 		        	String notifikasiDzuhur="0";
 		        	String status="nonaktifkan";
+		        	String time=waktuShalat(2);
+	    		    int hour=Integer.valueOf(time.substring(0,2));
+	    		    int minute=Integer.valueOf(time.substring(3,5));
 		    		if(buttonView.isChecked()){
 		    			notifikasiDzuhur="1";
 		    			status="aktifkan";
+		    			startAlarm(2, hour, minute);
+		    		}else{
+		    			stopAlarm(2);
 		    		}
 		    		ContentValues notifDzuhur= new ContentValues();
 		    		notifDzuhur.put("value",notifikasiDzuhur);
@@ -190,9 +203,15 @@ public class SettingFragment extends Fragment {
 		        public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 		        	String notifikasiAshar="0";
 		        	String status="nonaktifkan";
+		        	String time=waktuShalat(3);
+	    		    int hour=Integer.valueOf(time.substring(0,2));
+	    		    int minute=Integer.valueOf(time.substring(3,5));
 		    		if(buttonView.isChecked()){
 		    			notifikasiAshar="1";
 		    			status="aktifkan";
+		    			startAlarm(3, hour, minute);
+		    		}else{
+		    			stopAlarm(3);
 		    		}
 		    		ContentValues notifAshar= new ContentValues();
 		    		notifAshar.put("value",notifikasiAshar);
@@ -208,9 +227,15 @@ public class SettingFragment extends Fragment {
 		        public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 		        	String notifikasiMaghrib="0";
 		        	String status="nonaktifkan";
+		        	String time=waktuShalat(4);
+	    		    int hour=Integer.valueOf(time.substring(0,2));
+	    		    int minute=Integer.valueOf(time.substring(3,5));
 		    		if(buttonView.isChecked()){
 		    			notifikasiMaghrib="1";
 		    			status="aktifkan";
+		    			startAlarm(4, hour, minute);
+		    		}else{
+		    			stopAlarm(4);
 		    		}
 		    		ContentValues notifMaghrib= new ContentValues();
 		    		notifMaghrib.put("value",notifikasiMaghrib);
@@ -226,9 +251,15 @@ public class SettingFragment extends Fragment {
 		        public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 		        	String notifikasiIsya="0";
 		        	String status="nonaktifkan";
+		        	String time=waktuShalat(4);
+	    		    int hour=Integer.valueOf(time.substring(0,2));
+	    		    int minute=Integer.valueOf(time.substring(3,5));
 		    		if(buttonView.isChecked()){
 		    			notifikasiIsya="1";
 		    			status="aktifkan";
+		    			startAlarm(4, hour, minute);
+		    		}else{
+		    			stopAlarm(4);
 		    		}
 		    		ContentValues notifIsya= new ContentValues();
 		    		notifIsya.put("value",notifikasiIsya);
@@ -394,11 +425,13 @@ public class SettingFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Do something that differs the Activity's menu here
-    	 menu.clear();
-
+    	 //menu.clear();
+    	inflater.inflate(R.menu.setting_jadwal_save, menu);
         super.onCreateOptionsMenu(menu, inflater);
         
     }
+    
+    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -419,101 +452,98 @@ public class SettingFragment extends Fragment {
 	    
 
 
-	public void saveSetting(View rootView){
-		//Metode Perhitungan
-		int metode=spMetode.getSelectedItemPosition();
-		ContentValues metodeHitung = new ContentValues();
-		metodeHitung.put("value",String.valueOf(metode));
-		dbAdapter.updateSetting(metodeHitung,4);
-		
-		//MetodeAshar
-		int metodeAshar=spMetodeAshar.getSelectedItemPosition();
-		ContentValues hitungAshar= new ContentValues();
-		hitungAshar.put("value",String.valueOf(metodeAshar));
-		dbAdapter.updateSetting(hitungAshar,5);
-		
-		//Notifikasi
-		CheckBox cbSubuh=(CheckBox) rootView.findViewById(R.id.cbSubuh);
-		CheckBox  cbDzuhur=(CheckBox) rootView.findViewById(R.id.cbDzuhur);
-	    CheckBox cbAshar=(CheckBox) rootView.findViewById(R.id.cbAshar);
-	    CheckBox cbMaghrib=(CheckBox) rootView.findViewById(R.id.cbMaghrib);
-	    CheckBox  cbIsya=(CheckBox) rootView.findViewById(R.id.cbIsya);
-		String notifikasiSubuh="0";
-		String notifikasiDzuhur="0";
-		String notifikasiAshar="0";
-		String notifikasiMaghrib="0";
-		String notifikasiIsya="0";
-		
-		if(cbSubuh.isChecked()){
-			notifikasiSubuh="1";
-		}
-		if(cbDzuhur.isChecked()){
-			notifikasiDzuhur="1";
-		}
-		if(cbAshar.isChecked()){
-			notifikasiAshar="1";
-		}
-		if(cbMaghrib.isChecked()){
-			notifikasiMaghrib="1";
-		}
-		if(cbIsya.isChecked()){
-			notifikasiIsya="1";
-		}
-		
-		//save notifikasi subuh
-		ContentValues notifSubuh= new ContentValues();
-		notifSubuh.put("value",notifikasiSubuh);
-		dbAdapter.updateSetting(notifSubuh,6);
-		//save notifikasi Dzuhur
-		ContentValues notifDzuhur= new ContentValues();
-		notifDzuhur.put("value",notifikasiDzuhur);
-		dbAdapter.updateSetting(notifDzuhur,7);
-		//save notifikasi Ashar
-		ContentValues notifAshar= new ContentValues();
-		notifAshar.put("value",notifikasiAshar);
-		dbAdapter.updateSetting(notifAshar,8);
-		//save notifikasi Maghrib
-		ContentValues notifMaghrib= new ContentValues();
-		notifMaghrib.put("value",notifikasiMaghrib);
-		dbAdapter.updateSetting(notifMaghrib,9);
-		//save notifikasi Isya
-		ContentValues notifIsya= new ContentValues();
-		notifIsya.put("value",notifikasiIsya);
-		dbAdapter.updateSetting(notifIsya,10);
-		
-		
-		//Koreksi Waktu
-		TextView valueSubuh=(TextView) rootView.findViewById(R.id.valueSubuh);
-		TextView valueDzuhur=(TextView) rootView.findViewById(R.id.valueDzuhur);
-		TextView valueAshar=(TextView) rootView.findViewById(R.id.valueAshar);
-		TextView valueMaghrib=(TextView) rootView.findViewById(R.id.valueMaghrib);
-		TextView valueIsya=(TextView) rootView.findViewById(R.id. valueIsya);
 	
-		//save koreksi subuh
-		ContentValues koreksiSubuh= new ContentValues();
-		koreksiSubuh.put("value",valueSubuh.getText().toString());
-		dbAdapter.updateSetting(koreksiSubuh,14);
-		//save koreksi Dzuhur
-		ContentValues koreksiDzuhur= new ContentValues();
-		koreksiDzuhur.put("value",valueDzuhur.getText().toString());
-		dbAdapter.updateSetting(koreksiDzuhur,15);
-		//save koreksi Ashar
-		ContentValues koreksiAshar= new ContentValues();
-		koreksiAshar.put("value",valueAshar.getText().toString());
-		dbAdapter.updateSetting(koreksiAshar,16);
-		//save koreksi Maghrib
-		ContentValues koreksiMaghrib= new ContentValues();
-		koreksiMaghrib.put("value",valueMaghrib.getText().toString());
-		dbAdapter.updateSetting(koreksiMaghrib,17);
+	
+	
+	public void startAlarm(int id, int hour, int seconds){
+		AlarmManager alarmMgr;
+		PendingIntent alarmIntent;
+		Context context=getActivity().getApplicationContext();
+		alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(context, AlarmReceiver.class);
+		alarmIntent = PendingIntent.getBroadcast(context, id, intent, 0);
 		
-		//save koreksi Isya
-		ContentValues koreksiIsya= new ContentValues();
-		koreksiIsya.put("value",valueIsya.getText().toString());
-		dbAdapter.updateSetting(koreksiIsya,18);
-		
-		Toast.makeText(getActivity(),"Pengaturan Jadwal Shalat Tersimpan", Toast.LENGTH_LONG).show();
+		// Set the alarm to start at 8:30 a.m.
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.set(Calendar.HOUR_OF_DAY, hour);
+		calendar.set(Calendar.MINUTE, seconds);
 		
 	}
 	
+	public void stopAlarm(int id){
+		AlarmManager alarmMgr;
+		PendingIntent alarmIntent;
+		Context context=getActivity().getApplicationContext();
+		alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(context, AlarmReceiver.class);
+		alarmIntent = PendingIntent.getBroadcast(context, id, intent, 0);
+		
+		alarmMgr.cancel(pendingIntent);
 
+	}
+	
+	public String waktuShalat(int jenis_shalat){
+		 //get setting from database
+		Context context=getActivity().getApplicationContext();
+		DBAdapter dbAdapter = new DBAdapter(context);
+	    dbAdapter.openDataBase();
+	    double latitude=Double.parseDouble(dbAdapter.getSettings(dbAdapter.SETTING_LATITUDE).getString(2));
+	    double longitude=Double.parseDouble(dbAdapter.getSettings(dbAdapter.SETTING_LONGITUDE).getString(2));
+	    String kota=dbAdapter.getSettings(dbAdapter.SETTING_LOKASI).getString(2);
+	    int metode=Integer.valueOf(dbAdapter.getSettings(dbAdapter.SETTING_METODE).getString(2));
+	    int metodeAshar=Integer.valueOf(dbAdapter.getSettings(dbAdapter.SETTING_METODE_ASHAR).getString(2));
+	    double koreksiSubuh=Double.valueOf(dbAdapter.getSettings(dbAdapter.SETTING_KOREKSI_SUBUH).getString(2));
+	    double koreksiDzuhur=Double.valueOf(dbAdapter.getSettings(dbAdapter.SETTING_KOREKSI_SUBUH).getString(2));
+	    double koreksiAshar=Double.valueOf(dbAdapter.getSettings(dbAdapter.SETTING_KOREKSI_SUBUH).getString(2));
+	    double koreksiMaghrib=Double.valueOf(dbAdapter.getSettings(dbAdapter.SETTING_KOREKSI_SUBUH).getString(2));
+	    double koreksiIsya=Double.valueOf(dbAdapter.getSettings(dbAdapter.SETTING_KOREKSI_SUBUH).getString(2));
+
+	    
+	    //GEt device timezone
+	    TimeZone tz = TimeZone.getDefault();
+	    String gmt = TimeZone.getTimeZone(tz.getID()).getDisplayName(false,
+	            TimeZone.SHORT);
+	    String z1 = gmt.substring(4);
+
+	    String z = z1.replaceAll(":", ".");
+	    double zo = Double.parseDouble(z);
+
+	   // Hitung Jadwal
+	     HitungWaktu prayers = new HitungWaktu();
+	     //format 24 jam
+	     prayers.setTimeFormat(prayers.Time24);
+	     //metode hitung
+	     prayers.setCalcMethod(metode);
+	     //prayers.setAsrJuristic(metodeAshar);
+	     prayers.setAdjustHighLats(prayers.AngleBased);
+	     //koreksi manual
+	     int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
+	     prayers.tune(offsets);
+	     Calendar cal = Calendar.getInstance();
+	     int second = cal.get(Calendar.SECOND);
+	     int minute = cal.get(Calendar.MINUTE);
+	     int hourofday = cal.get(Calendar.HOUR_OF_DAY);
+	     
+	 
+	     ArrayList<String> prayerTimes = prayers.getPrayerTimes(cal,
+	                latitude, longitude,zo);
+	     String time;
+	   
+	     if(jenis_shalat==1){
+	    	 time=prayerTimes.get(0);
+	     }else if(jenis_shalat==2){
+	    	 time=prayerTimes.get(2);
+	     }
+	     else if(jenis_shalat==3){
+	    	 time=prayerTimes.get(3);
+	     }
+	     else if(jenis_shalat==4){
+	    	 time=prayerTimes.get(4);
+	     }else{
+	    	 time=prayerTimes.get(6);
+	     }
+	  
+	   return time;
+	}
 }

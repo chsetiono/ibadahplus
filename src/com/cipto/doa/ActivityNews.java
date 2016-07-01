@@ -8,10 +8,14 @@ import org.json.JSONObject;
 
 import com.cipto.doa.ActivityQuran.ListClickHandler;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,7 +38,10 @@ public class ActivityNews extends Activity {
  protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity_news);
-
+  ActionBar ab = getActionBar(); 
+	// ab.setDisplayHomeAsUpEnabled(true);
+  ab.setHomeButtonEnabled(true);
+  ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
   listview = (ListView) findViewById(R.id.lvNews);
   setListViewAdapter();
   getDataFromInternet();
@@ -78,6 +85,10 @@ public class ActivityNews extends Activity {
     news.setJudul(jObject.getString("judul"));
     news.setImageUrl(jObject.getString("image"));
     news.setId(jObject.getString("id"));
+    news.setIsi(jObject.getString("isi"));
+    news.setTanggal(jObject.getString("tanggal"));
+    news.setSumber(jObject.getString("sumber"));
+    
     listNews.add(news);
    }
 
@@ -100,5 +111,25 @@ public class ActivityNews extends Activity {
 	  			//Toast.makeText(ActivityNews.this, "klik....", Toast.LENGTH_SHORT).show();
 			}
 	  
+	}
+ 
+ @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    return true;
+	}
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  String id_sunnah= getIntent().getStringExtra("id");  
+	  switch (item.getItemId()) {
+	    case android.R.id.home:
+       // app icon in action bar clicked; go home
+	    	Intent listDoa = new Intent(ActivityNews.this, Main.class);
+	            listDoa.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		        startActivity(listDoa);  
+       return true;
+	  }
+	  return true;
 	}
 }

@@ -7,7 +7,7 @@ public class News {
 	 private String id;
 	 private String tanggal;
 	 private String isi;
-	 
+	 private String sumber;
 	 public String getJudul() {
 	  return judul;
 	 }
@@ -34,4 +34,19 @@ public class News {
 	  this.id = id;
 	 }
 	 
+	 public String getTanggal(){
+		 return tanggal;
+	 }
+	 
+	 public void setTanggal(String tanggal){
+		 this.tanggal=tanggal;
+	 }
+	 
+	 public String getSumber(){
+		 return sumber;
+	 }
+	 
+	 public void setSumber(String sumber){
+		 this.sumber=sumber;
+	 }
 	}
