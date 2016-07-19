@@ -91,13 +91,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
  	     //prayers.setAsrJuristic(metodeAshar);
  	     prayers.setAdjustHighLats(prayers.AngleBased);
  	     //koreksi manual
- 	     /*
+ 	   
  	     prayers.setKoreksiSubuh(koreksiSubuh);
  	     prayers.setKoreksiDzuhur(koreksiDzuhur);
  	     prayers.setKoreksiAshar(koreksiAshar);
  	     prayers.setKoreksiMaghrib(koreksiMaghrib);
  	     prayers.setKoreksiIsya(koreksiIsya);
- 	     */
+ 	 
  	     int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
  	     prayers.tune(offsets);
  	     Calendar cal = Calendar.getInstance();
@@ -177,7 +177,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 	        	startActivity(intentShalawat);
 	        break;
 	        case R.id.imageZakat:
-	        	Toast.makeText(getActivity().getApplicationContext(), "comming soon...", Toast.LENGTH_LONG).show();
+	        	Intent intentZakat=new Intent(getActivity().getApplicationContext(), ActivityZakat.class);
+	        	startActivity(intentZakat);
 	        break;
 	        case R.id.imageHadits:
 	        	Intent intentSunnah=new Intent(getActivity().getApplicationContext(), ActivitySunnah.class);

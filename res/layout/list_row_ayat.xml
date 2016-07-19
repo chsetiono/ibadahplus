@@ -1,6 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/GridLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="3"
+ >
 
    
 
@@ -15,33 +19,27 @@
 
     <TextView
         android:id="@+id/tvNomor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tvIndo"
-        android:layout_alignParentLeft="true"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="0"
+        android:layout_rowSpan="2"
         android:text="No"
         android:textColor="@color/text_black"
         android:textSize="18dp" />
 
     <TextView
         android:id="@+id/tvArab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:hint="@string/title_activity_activity_quran"
+        android:layout_column="1"
+        android:layout_row="0"
         android:text="TextView"
         android:textColor="@color/text_black"
         android:textSize="18dp" />
 
     <TextView
         android:id="@+id/tvIndo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvArab"
-        android:layout_marginLeft="36dp"
-        android:layout_toRightOf="@+id/tvNomor"
+        android:layout_column="1"
+		android:layout_row="1"
         android:text="TextView"
         android:textColor="@color/text_black" />
 
-</RelativeLayout>
+</GridLayout>

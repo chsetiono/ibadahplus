@@ -1,4 +1,5 @@
 package com.cipto.doa;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -23,19 +24,22 @@ public class AlarmReceiver extends  BroadcastReceiver{
 		
         //stop last adzan
 		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, alarmIntent, 0);
+		int code = alarmIntent.getIntExtra("code", 1);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, code, alarmIntent, 0);
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         manager.cancel(pendingIntent);
         
+       
         //create new adzan untuk waktu shlat selanjutnya
         Intent intentNew = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingNew = PendingIntent.getBroadcast(context, 1, intent, 0);
+        intentNew.putExtra("code",code);
+        PendingIntent pendingNew = PendingIntent.getBroadcast(context,code, intent, 0);
         AlarmManager alarmManagerNew = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         
         //set new time
-        String time=waktuShalat(context);
-        int hour=Integer.valueOf(time.substring(0,1));
-        int minute=Integer.valueOf(time.substring(3,4));
+        String time=waktuShalat(context,Integer.valueOf(code));
+        int hour=Integer.valueOf(time.substring(0,2));
+	    int minute=Integer.valueOf(time.substring(3,5));
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
 
@@ -43,16 +47,17 @@ public class AlarmReceiver extends  BroadcastReceiver{
         calSet.set(Calendar.MINUTE,minute);
         calSet.set(Calendar.SECOND, 0);
         calSet.set(Calendar.MILLISECOND, 0);
-        alarmManagerNew.set(AlarmManager.RTC_WAKEUP,  calSet.getTimeInMillis(), pendingIntent);
+        alarmManagerNew.set(AlarmManager.RTC_WAKEUP,  calSet.getTimeInMillis(), pendingNew);
         
         /* Setting the alarm here */
 
         showNotification(context);     
      }
 	
-	public String waktuShalat(Context context){
+	public String waktuShalat(Context context, int jenis_shalat){
 		 //get setting from database
-		DBAdapter dbAdapter = new DBAdapter(context.getApplicationContext());
+
+		DBAdapter dbAdapter = new DBAdapter(context);
 	    dbAdapter.openDataBase();
 	    double latitude=Double.parseDouble(dbAdapter.getSettings(dbAdapter.SETTING_LATITUDE).getString(2));
 	    double longitude=Double.parseDouble(dbAdapter.getSettings(dbAdapter.SETTING_LONGITUDE).getString(2));
@@ -85,30 +90,31 @@ public class AlarmReceiver extends  BroadcastReceiver{
 	     prayers.setAdjustHighLats(prayers.AngleBased);
 	     //koreksi manual
 	     int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
+	     
+	     prayers.setKoreksiSubuh(koreksiSubuh);
+	     prayers.setKoreksiDzuhur(koreksiDzuhur);
+	     prayers.setKoreksiAshar(koreksiAshar);
+	     prayers.setKoreksiMaghrib(koreksiMaghrib);
+	     prayers.setKoreksiIsya(koreksiIsya);
+
 	     prayers.tune(offsets);
 	     Calendar cal = Calendar.getInstance();
-	     int second = cal.get(Calendar.SECOND);
-	     int minute = cal.get(Calendar.MINUTE);
-	     int hourofday = cal.get(Calendar.HOUR_OF_DAY);
+	     cal.add(Calendar.DATE, 1);
 	     
-	     double currentTime=Double.valueOf(hourofday)*60*60*1000+Double.valueOf(hourofday)*60*1000+Double.valueOf(minute)*60*1000+Double.valueOf(second)*1000;
+	 
 	     ArrayList<String> prayerTimes = prayers.getPrayerTimes(cal,
 	                latitude, longitude,zo);
 	     String time;
-	     double subuhTime=Double.valueOf(prayerTimes.get(0).substring(0,1))*60*60*1000+Double.valueOf(prayerTimes.get(0).substring(3,4));
-	     double dzuhurTime=Double.valueOf(prayerTimes.get(2).substring(0,1))*60*60*1000+Double.valueOf(prayerTimes.get(2).substring(3,4));
-	     double asharTime=Double.valueOf(prayerTimes.get(3).substring(0,1))*60*60*1000+Double.valueOf(prayerTimes.get(3).substring(3,4));
-	     double maghribTime=Double.valueOf(prayerTimes.get(4).substring(0,1))*60*60*1000+Double.valueOf(prayerTimes.get(4).substring(3,4));
-	     double isyaTime=Double.valueOf(prayerTimes.get(6).substring(0,1))*60*60*1000+Double.valueOf(prayerTimes.get(6).substring(3,4));
-	     if(currentTime >subuhTime && currentTime<dzuhurTime){
-	    	 time=prayerTimes.get(1);
-	     }else if(currentTime >dzuhurTime && currentTime<asharTime){
+	   
+	     if(jenis_shalat==1){
+	    	 time=prayerTimes.get(0);
+	     }else if(jenis_shalat==2){
 	    	 time=prayerTimes.get(2);
 	     }
-	     else if(currentTime >asharTime && currentTime<maghribTime){
+	     else if(jenis_shalat==3){
 	    	 time=prayerTimes.get(3);
 	     }
-	     else if(currentTime >maghribTime && currentTime<isyaTime){
+	     else if(jenis_shalat==4){
 	    	 time=prayerTimes.get(4);
 	     }else{
 	    	 time=prayerTimes.get(6);
@@ -127,10 +133,10 @@ public class AlarmReceiver extends  BroadcastReceiver{
 		         
        // This pending intent will open after notification click
 		PendingIntent i=PendingIntent.getActivity(context, 0,
-		                                                new Intent(context, JadwalShalat.class),
+		                                                new Intent(context, Main.class),
 		                                                0);   
-		note.setLatestEventInfo(context, "Android Example Notification Title",
-		                                "This is the android example notification message", i);
+		note.setLatestEventInfo(context, "Saatnya Shalat...!",
+		                                "Shalat dulu biar berkah", i);
 		         
 		//After uncomment this line you will see number of notification arrived
 		//note.number=2;

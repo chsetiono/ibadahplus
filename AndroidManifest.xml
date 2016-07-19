@@ -155,6 +155,42 @@
             android:name="com.cipto.doa.ActivityDisplayNews"
             android:label="@string/title_activity_activity_news" >
         </activity>
+        <activity
+            android:name="com.cipto.doa.ActivityZakat"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
+         <activity
+            android:name="com.cipto.doa.ActivityZakatFitrah"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
+        
+         <activity
+            android:name="com.cipto.doa.ActivityZakatProfesi"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
+        
+         <activity
+            android:name="com.cipto.doa.ActivityZakatFidyah"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
+         <activity
+            android:name="com.cipto.doa.ActivityZakatEmas"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
+         <activity
+            android:name="com.cipto.doa.ActivityZakatPertanian"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
+        
+          <activity
+            android:name="com.cipto.doa.ActivityZakatRikaz"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
+        
+         <activity
+            android:name="com.cipto.doa.ActivityZakatPerdagangan"
+            android:label="@string/title_activity_activity_news" >
+        </activity>
     </application>
 	
 </manifest>

@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".DzikirMain" >
+
+    <TextView
+        android:id="@+id/tvLabelJumlah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Jumlah Panen" />
+
+    <EditText
+        android:id="@+id/etJumlahPanen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvLabelJumlah"
+        android:layout_below="@+id/tvLabelJumlah"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etJumlahPanen"
+        android:layout_alignBottom="@+id/etJumlahPanen"
+        android:layout_alignParentRight="true"
+        android:text="Kg" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etJumlahPanen"
+        android:layout_below="@+id/etJumlahPanen"
+        android:layout_marginTop="17dp"
+        android:text="Pengairan" />
+
+    <Spinner
+        android:id="@+id/spPengairan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2" />
+
+    <Button
+        android:id="@+id/btHitung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spPengairan"
+        android:layout_below="@+id/spPengairan"
+        android:layout_marginTop="66dp"
+        android:text="Hitung" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spPengairan"
+        android:layout_below="@+id/spPengairan"
+        android:text="Jenis" />
+
+    <CheckBox
+        android:id="@+id/cbJenis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:text="Makanan Pokok" />
+
+</RelativeLayout>

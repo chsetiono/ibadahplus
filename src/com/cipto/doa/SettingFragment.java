@@ -40,6 +40,9 @@ public class SettingFragment extends Fragment {
     public SettingFragment(){}
     Spinner spMetode,spMetodeAshar;
 	DBAdapter dbAdapter;
+	CheckBox cbSubuh,cbDzuhur,cbAshar,cbMaghrib,cbIsya;
+	SeekBar sbSubuh,sbDzuhur,sbAshar,sbMaghrib,sbIsya;
+	TextView valueSubuh,valueDzuhur,valueAshar,valueMaghrib,valueIsya;
 	private PendingIntent pendingIntent;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState){
@@ -124,11 +127,11 @@ public class SettingFragment extends Fragment {
 		    
 		    
 		    //Notifikasi
-		    CheckBox cbSubuh=(CheckBox) rootView.findViewById(R.id.cbSubuh);
-			CheckBox  cbDzuhur=(CheckBox) rootView.findViewById(R.id.cbDzuhur);
-		    CheckBox cbAshar=(CheckBox) rootView.findViewById(R.id.cbAshar);
-		    CheckBox cbMaghrib=(CheckBox) rootView.findViewById(R.id.cbMaghrib);
-		    CheckBox  cbIsya=(CheckBox) rootView.findViewById(R.id.cbIsya);
+		  cbSubuh=(CheckBox) rootView.findViewById(R.id.cbSubuh);
+		  cbDzuhur=(CheckBox) rootView.findViewById(R.id.cbDzuhur);
+		  cbAshar=(CheckBox) rootView.findViewById(R.id.cbAshar);
+		  cbMaghrib=(CheckBox) rootView.findViewById(R.id.cbMaghrib);
+		  cbIsya=(CheckBox) rootView.findViewById(R.id.cbIsya);
 		    
 		    
 		    //set default nontifikasi
@@ -149,6 +152,7 @@ public class SettingFragment extends Fragment {
 		    }
 		    
 		    //change notifikasi listener
+		    /*
 		    cbSubuh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 		        @Override
@@ -268,13 +272,13 @@ public class SettingFragment extends Fragment {
 		        }
 		    }
 		    );  
-	 
+	 		*/
 		    //Koreksi Waktu
-		    SeekBar sbSubuh=(SeekBar) rootView.findViewById(R.id.sbSubuh);
-		    SeekBar sbDzuhur=(SeekBar) rootView.findViewById(R.id.sbDzuhur);
-		    SeekBar sbAshar=(SeekBar) rootView.findViewById(R.id.sbAshar);
-		    SeekBar sbMaghrib=(SeekBar) rootView.findViewById(R.id.sbMaghrib1);
-		    SeekBar sbIsya=(SeekBar) rootView.findViewById(R.id.sbIsya);
+		    sbSubuh=(SeekBar) rootView.findViewById(R.id.sbSubuh);
+		    sbDzuhur=(SeekBar) rootView.findViewById(R.id.sbDzuhur);
+		    sbAshar=(SeekBar) rootView.findViewById(R.id.sbAshar);
+		    sbMaghrib=(SeekBar) rootView.findViewById(R.id.sbMaghrib1);
+		    sbIsya=(SeekBar) rootView.findViewById(R.id.sbIsya);
 		    sbSubuh.setMax(120);
 		    sbDzuhur.setMax(120);
 		    sbAshar.setMax(120);
@@ -289,11 +293,11 @@ public class SettingFragment extends Fragment {
 		   
 		    
 		   
-		    final TextView valueSubuh=(TextView) rootView.findViewById(R.id.valueSubuh);
-		    final TextView valueDzuhur=(TextView) rootView.findViewById(R.id.valueDzuhur);
-		    final TextView valueAshar=(TextView) rootView.findViewById(R.id.valueAshar);
-		    final TextView valueMaghrib=(TextView) rootView.findViewById(R.id.valueMaghrib);
-		    final TextView valueIsya=(TextView) rootView.findViewById(R.id. valueIsya);
+		    valueSubuh=(TextView) rootView.findViewById(R.id.valueSubuh);
+		    valueDzuhur=(TextView) rootView.findViewById(R.id.valueDzuhur);
+		    valueAshar=(TextView) rootView.findViewById(R.id.valueAshar);
+		    valueMaghrib=(TextView) rootView.findViewById(R.id.valueMaghrib);
+		    valueIsya=(TextView) rootView.findViewById(R.id. valueIsya);
 		    valueSubuh.setText(String.valueOf(defaultKoreksiSubuh-60));
 		    valueDzuhur.setText(String.valueOf(defaultKoreksiDzuhur-60)); 
 		    valueAshar.setText(String.valueOf(defaultKoreksiAshar-60)); 
@@ -320,7 +324,7 @@ public class SettingFragment extends Fragment {
 		    	    // TODO Auto-generated method stub 
 		    		   ContentValues koreksiSubuh= new ContentValues();
 		    		   koreksiSubuh.put("value",valueSubuh.getText().toString());
-		    		   dbAdapter.updateSetting(koreksiSubuh,14);
+		    		   //dbAdapter.updateSetting(koreksiSubuh,14);
 		    	   } 
 		    }); 
 		    
@@ -344,7 +348,7 @@ public class SettingFragment extends Fragment {
 		    	    // TODO Auto-generated method stub 
 		    		   ContentValues koreksiDzuhur= new ContentValues();
 		    		   koreksiDzuhur.put("value",valueDzuhur.getText().toString());
-		    		   dbAdapter.updateSetting(koreksiDzuhur,15);
+		    		   //dbAdapter.updateSetting(koreksiDzuhur,15);
 		    	   } 
 		    });
 		    
@@ -368,7 +372,7 @@ public class SettingFragment extends Fragment {
 		    	    // TODO Auto-generated method stub 
 		    		   ContentValues koreksiAshar= new ContentValues();
 		    		   koreksiAshar.put("value",valueAshar.getText().toString());
-		    		   dbAdapter.updateSetting(koreksiAshar,16);
+		    		   //dbAdapter.updateSetting(koreksiAshar,16);
 		    	   } 
 		    });
 		    
@@ -392,7 +396,7 @@ public class SettingFragment extends Fragment {
 		    	    // TODO Auto-generated method stub 
 		    		   ContentValues koreksiMaghrib= new ContentValues();
 		    		   koreksiMaghrib.put("value",valueMaghrib.getText().toString());
-		    		   dbAdapter.updateSetting(koreksiMaghrib,17);
+		    		   //dbAdapter.updateSetting(koreksiMaghrib,17);
 		    	   } 
 		    }); 
 		    
@@ -416,7 +420,7 @@ public class SettingFragment extends Fragment {
 		    	    // TODO Auto-generated method stub 
 		    		   ContentValues koreksiIsya= new ContentValues();
 		    		   koreksiIsya.put("value",valueMaghrib.getText().toString());
-		    		   dbAdapter.updateSetting(koreksiIsya,18);
+		    		   //dbAdapter.updateSetting(koreksiIsya,18);
 		    	   } 
 		    }); 
 	    return rootView;
@@ -435,14 +439,11 @@ public class SettingFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {/*
-        case R.id.activity_menu_item:
+        switch (item.getItemId()) {
+        case R.id.save:
             // Not implemented here
+        	saveSetting();
             return false;
-        case R.id.fragment_menu_item:
-            // Do Fragment menu item stuff here
-            return true;
-            \*/
         default:
             break;
         }
@@ -456,12 +457,13 @@ public class SettingFragment extends Fragment {
 	
 	
 	public void startAlarm(int id, int hour, int seconds){
-		AlarmManager alarmMgr;
 		PendingIntent alarmIntent;
 		Context context=getActivity().getApplicationContext();
-		alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(context, AlarmReceiver.class);
+		intent.putExtra("code",id);
 		alarmIntent = PendingIntent.getBroadcast(context, id, intent, 0);
+		
 		
 		// Set the alarm to start at 8:30 a.m.
 		Calendar calendar = Calendar.getInstance();
@@ -469,6 +471,7 @@ public class SettingFragment extends Fragment {
 		calendar.set(Calendar.HOUR_OF_DAY, hour);
 		calendar.set(Calendar.MINUTE, seconds);
 		
+		alarmMgr.set(alarmMgr.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
 	}
 	
 	public void stopAlarm(int id){
@@ -479,7 +482,7 @@ public class SettingFragment extends Fragment {
 		Intent intent = new Intent(context, AlarmReceiver.class);
 		alarmIntent = PendingIntent.getBroadcast(context, id, intent, 0);
 		
-		alarmMgr.cancel(pendingIntent);
+		alarmMgr.cancel(alarmIntent);
 
 	}
 	
@@ -519,11 +522,16 @@ public class SettingFragment extends Fragment {
 	     prayers.setAdjustHighLats(prayers.AngleBased);
 	     //koreksi manual
 	     int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
+	     
+	     prayers.setKoreksiSubuh(koreksiSubuh);
+	     prayers.setKoreksiDzuhur(koreksiDzuhur);
+	     prayers.setKoreksiAshar(koreksiAshar);
+	     prayers.setKoreksiMaghrib(koreksiMaghrib);
+	     prayers.setKoreksiIsya(koreksiIsya);
+
 	     prayers.tune(offsets);
 	     Calendar cal = Calendar.getInstance();
-	     int second = cal.get(Calendar.SECOND);
-	     int minute = cal.get(Calendar.MINUTE);
-	     int hourofday = cal.get(Calendar.HOUR_OF_DAY);
+
 	     
 	 
 	     ArrayList<String> prayerTimes = prayers.getPrayerTimes(cal,
@@ -545,5 +553,134 @@ public class SettingFragment extends Fragment {
 	     }
 	  
 	   return time;
+	}
+	
+	public void saveSetting(){
+		//Metode Perhitungan
+		int metode=spMetode.getSelectedItemPosition();
+		ContentValues metodeHitung = new ContentValues();
+		metodeHitung.put("value",String.valueOf(metode));
+		dbAdapter.updateSetting(metodeHitung,4);
+		
+		//MetodeAshar
+		int metodeAshar=spMetodeAshar.getSelectedItemPosition();
+		ContentValues hitungAshar= new ContentValues();
+		hitungAshar.put("value",String.valueOf(metodeAshar));
+		dbAdapter.updateSetting(hitungAshar,5);
+		
+		//save koreksi subuh
+		ContentValues koreksiSubuh= new ContentValues();
+		koreksiSubuh.put("value",valueSubuh.getText().toString());
+		dbAdapter.updateSetting(koreksiSubuh,14);
+		//save koreksi Dzuhur
+		ContentValues koreksiDzuhur= new ContentValues();
+		koreksiDzuhur.put("value",valueDzuhur.getText().toString());
+		dbAdapter.updateSetting(koreksiDzuhur,15);
+		//save koreksi Ashar
+		ContentValues koreksiAshar= new ContentValues();
+		koreksiAshar.put("value",valueAshar.getText().toString());
+		dbAdapter.updateSetting(koreksiAshar,16);
+		//save koreksi Maghrib
+		ContentValues koreksiMaghrib= new ContentValues();
+		koreksiMaghrib.put("value",valueMaghrib.getText().toString());
+		dbAdapter.updateSetting(koreksiMaghrib,17);
+		
+		//save koreksi Isya
+		ContentValues koreksiIsya= new ContentValues();
+		koreksiIsya.put("value",valueIsya.getText().toString());
+		dbAdapter.updateSetting(koreksiIsya,18);
+		
+		
+		
+		//Notifikasi
+		String notifikasiSubuh="0";
+		String notifikasiDzuhur="0";
+		String notifikasiAshar="0";
+		String notifikasiMaghrib="0";
+		String notifikasiIsya="0";
+		
+		
+		//Set notifikasi subuh
+		
+		String timeSubuh=waktuShalat(1);
+	    int hour=Integer.valueOf(timeSubuh.substring(0,2));
+	    int minute=Integer.valueOf(timeSubuh.substring(3,5));
+		
+		
+		if(cbSubuh.isChecked()){
+			notifikasiSubuh="1";
+			startAlarm(1, hour, minute);
+		}else{
+			stopAlarm(1);
+		}
+		
+		
+		
+		//set dzuhur
+		String timeDzuhur=waktuShalat(2);
+	    int hourDzuhur=Integer.valueOf(timeDzuhur.substring(0,2));
+	    int minuteDzuhur=Integer.valueOf(timeDzuhur.substring(3,5));
+		if(cbDzuhur.isChecked()){
+			notifikasiDzuhur="1";
+			startAlarm(2, hourDzuhur, minuteDzuhur);
+		}else{
+			stopAlarm(2);
+		}
+		
+		//set notifikasi ashar
+		String timeAshar=waktuShalat(3);
+	    int hourAshar=Integer.valueOf(timeAshar.substring(0,2));
+	    int minuteAshar=Integer.valueOf(timeAshar.substring(3,5));
+		if(cbAshar.isChecked()){
+			notifikasiAshar="1";
+			startAlarm(3, hourAshar,minuteAshar);
+		}else{
+			stopAlarm(3);
+		}
+		
+		//set notifikasi Magrib
+		String timeMaghrib=waktuShalat(4);
+		int hourMaghrib=Integer.valueOf(timeMaghrib.substring(0,2));
+		int minuteMaghrib=Integer.valueOf(timeMaghrib.substring(3,5));
+		if(cbMaghrib.isChecked()){
+			notifikasiMaghrib="1";
+			startAlarm(4, hourMaghrib,minuteMaghrib);
+		}else{
+			stopAlarm(4);
+		}
+		//set notifikasi Isya
+		String timeIsya=waktuShalat(5);
+		int hourIsya=Integer.valueOf(timeIsya.substring(0,2));
+		int minuteIsya=Integer.valueOf(timeIsya.substring(3,5));
+		if(cbIsya.isChecked()){
+			notifikasiIsya="1";
+			startAlarm(5,  hourIsya,minuteIsya);
+		}
+		
+		//save notifikasi subuh
+		ContentValues notifSubuh= new ContentValues();
+		notifSubuh.put("value",notifikasiSubuh);
+		dbAdapter.updateSetting(notifSubuh,6);
+		//save notifikasi Dzuhur
+		ContentValues notifDzuhur= new ContentValues();
+		notifDzuhur.put("value",notifikasiDzuhur);
+		dbAdapter.updateSetting(notifDzuhur,7);
+		//save notifikasi Ashar
+		ContentValues notifAshar= new ContentValues();
+		notifAshar.put("value",notifikasiAshar);
+		dbAdapter.updateSetting(notifAshar,8);
+		//save notifikasi Maghrib
+		ContentValues notifMaghrib= new ContentValues();
+		notifMaghrib.put("value",notifikasiMaghrib);
+		dbAdapter.updateSetting(notifMaghrib,9);
+		//save notifikasi Isya
+		ContentValues notifIsya= new ContentValues();
+		notifIsya.put("value",notifikasiIsya);
+		dbAdapter.updateSetting(notifIsya,10);
+		
+		
+		
+		Toast.makeText(getActivity(),"Pengaturan Jadwal Shalat Tersimpan", Toast.LENGTH_LONG).show();
+		
 	}
 }
