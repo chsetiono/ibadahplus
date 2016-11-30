@@ -1,210 +1,329 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp" >
 
-    <TextView
-        android:id="@+id/lokasi"
-        android:textSize="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="Lokasi" />
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_bg_front"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/front_cover"
+        android:scaleType="fitXY" 
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp" >
 
-    <TextView
-        android:id="@+id/subuh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/imageDoa"
-        android:layout_below="@+id/lokasi"
-        android:textSize="16dp"
-        android:text="Subuh" />
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dip"
+            android:layout_margin="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+            <TextView
+		        android:id="@+id/namaLokasi"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:paddingLeft="25dip"
+                android:paddingTop="10dip"
+                android:gravity="left"
+                android:textColor="@color/text_green"
+                android:layout_span="3"
+		        android:text="--"
+		        android:textSize="16dp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+             android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+			            
+            <TextView
+                android:id="@+id/imsyak"
+                android:layout_width="@dimen/width_column_front"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="imsyak"
+                android:textColor="@color/text_green"
+                android:textSize="16dp" />
 
-    <TextView
-        android:id="@+id/isya"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/maghrb"
-        android:layout_alignBottom="@+id/maghrb"
-        android:layout_alignLeft="@+id/dzuhur"
-        android:textSize="16dp"
-        android:text="isya" />
+            
 
+            <TextView
+                android:id="@+id/tvSubuh"
+                android:layout_width="@dimen/width_column_front"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Subuh"
+                android:textColor="@color/text_green"
+                android:textSize="16dp" />
 
+			<TextView
+                android:id="@+id/tvDzuhur"
+                android:layout_width="@dimen/width_column_front"
+                android:layout_height="wrap_content"
+				android:gravity="center"
+				android:textColor="@color/text_green"
+                android:text="Dzuhur"
+                android:textSize="16dp" />
+  
+        </TableRow>
+        
+        
+        <TableRow
+		        android:id="@+id/tableRow3"
+		        android:layout_width="match_parent"
+		        android:gravity="center"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/tableLayout1"
+		        android:layout_below="@+id/tableLayout1"
+		        android:layout_marginTop="14dp" >
+            
+     			<TextView
+	                android:id="@+id/ashar"
+	                android:layout_width="@dimen/width_column_front"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:text="ashar"
+	                 android:textColor="@color/text_green"
+	                android:textSize="16dp" />
 
-    <ImageButton
-        android:id="@+id/imageQuran"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/maghrb"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/icon_quran" />
+	            <TextView
+	                android:id="@+id/maghrb"
+	                android:layout_width="@dimen/width_column_front"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:text="Maghrib"
+	                android:textColor="@color/text_green"
+	                android:textSize="16dp" />
 
-    <ImageButton
-        android:id="@+id/imageNews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageKiblat"
-        android:layout_alignRight="@+id/ashar"
-        android:src="@drawable/icon_news" />
+	            <TextView
+	                android:id="@+id/isya"
+	                android:layout_width="@dimen/width_column_front"
+	                android:layout_height="wrap_content"
+	         		android:gravity="center"
+	                android:text="isya"
+	                android:textColor="@color/text_green"
+	                android:textSize="16dp" />
+    </TableRow>
+    
+        
+    </TableLayout>
+	<ScrollView
+		        android:id="@+id/scrollView1"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@+id/tableLayout1"
+		        android:padding="0dip"
+		        android:layout_marginLeft="0dip" >
 
-    <TextView
-        android:id="@+id/ashar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/maghrb"
-        android:layout_alignParentRight="true"
-        android:textSize="16dp"
-        android:text="ashar" />
+        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" >
+      
+				  <TableLayout
+				      android:id="@+id/tableLayout2"
+				      android:layout_width="match_parent"
+				      android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/dzuhur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/maghrb"
-        android:layout_alignRight="@+id/imageDzikir"
-        android:textSize="16dp"
-        android:text="Dzuhur" />
+					        <TableRow
+					            android:id="@+id/tableRow4"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:gravity="center"
+					            android:padding="0dip"
+					            android:layout_margin="0dp"
+					            android:layout_alignParentLeft="true"
+					            android:layout_alignParentTop="true" >
 
-    <TextView
-        android:id="@+id/maghrb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/subuh"
-        android:layout_below="@+id/subuh"
-        android:textSize="16dp"
-        android:text="Maghrib" />
+						            <ImageButton
+						                android:id="@+id/imageQuran"
+						                android:layout_width="@dimen/width_column_front"
+						                android:layout_height="wrap_content"
+						                android:background="@android:color/transparent"
+						                android:src="@drawable/icon_quran" />
+			        
+									<ImageButton
+									        android:id="@+id/imageKiblat"
+									        android:layout_width="@dimen/width_column_front"
+									        android:layout_height="wrap_content"
+									        android:gravity="center"
+									        android:background="@android:color/transparent"
+									        android:src="@drawable/icon_kiblat" />
+			
+			
+			
+											<ImageButton
+											        android:id="@+id/imageNews"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:background="@android:color/transparent"
+											        android:src="@drawable/icon_news" />
+       							 </TableRow>
 
-    <TextView
-        android:id="@+id/tvQuran"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageQuran"
-        android:layout_below="@+id/imageQuran"
-        android:text="Quran"
-        android:textColor="@color/text_green" />
+						        <TableRow
+						            android:id="@+id/tableRow5"
+						            android:layout_width="wrap_content"
+						            android:layout_height="wrap_content" 
+						            android:gravity="center"
+						            android:layout_marginBottom="20dip"
+						            >
 
-    <TextView
-        android:id="@+id/tvKiblat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvQuran"
-        android:layout_alignBottom="@+id/tvQuran"
-        android:layout_alignLeft="@+id/imageKiblat"
-        android:text="Kiblat"
-        android:textColor="@color/text_green" />
+							                <TextView
+										        android:id="@+id/tvQuran"
+										        android:layout_width="@dimen/width_column_front"
+										        android:layout_height="wrap_content"
+										        android:gravity="center"
+										        android:text="Al Quran"
+										        android:textColor="@color/text_green" />
+											<TextView
+											        android:id="@+id/tvKiblat"
+											       android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:text="Kiblat"
+											        android:textColor="@color/text_green" />
+											
+											<TextView
+											        android:id="@+id/tvMasjid"
+											        android:layout_width="@dimen/width_column_front"
+											        android:gravity="center"
+											        android:layout_height="wrap_content"
+											        android:text="Artikel"
+											        android:textColor="@color/text_green" />
+		        				</TableRow>
+		
+						        <TableRow
+						            android:id="@+id/tableRow6"
+						            android:layout_width="wrap_content"
+						            android:layout_height="wrap_content" 
+						            android:gravity="center"
+						            >
+												<ImageButton
+												        android:id="@+id/imageDoa"
+												        android:layout_width="@dimen/width_column_front"
+												        android:layout_height="wrap_content"
+												        android:background="@android:color/transparent"
+												        android:src="@drawable/icon_doa" />
+		  
+												<ImageButton
+											        android:id="@+id/imageDzikir"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:background="@android:color/transparent"
+											        android:src="@drawable/icon_dzikir" />
+												<ImageButton
+											        android:id="@+id/imageShalawat"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:background="@android:color/transparent"
+											        android:src="@drawable/icon_sahalawat" />
 
-    <ImageButton
-        android:id="@+id/imageKiblat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tvKiblat"
-        android:layout_alignLeft="@+id/imageDzikir"
-        android:src="@drawable/icon_kiblat" />
+        						</TableRow>
+						 		<TableRow
+						            android:id="@+id/tableRow7"
+						            android:layout_width="wrap_content"
+						            android:layout_height="wrap_content"
+						            android:gravity="center"
+						            android:layout_marginBottom="20dip"
+						        >
+											<TextView
+											        android:id="@+id/tvDoa"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:text="Doa Harian"
+											        android:textColor="@color/text_green" />
+	
+	
+											<TextView
+											        android:id="@+id/tvDzikir"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:text="Tasbeh"
+											        android:textColor="@color/text_green" />
+											<TextView
+											        android:id="@+id/tvHadits"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:text="Shalawat"
+											        android:textColor="@color/text_green" />
 
-    <ImageButton
-        android:id="@+id/imageDoa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvQuran"
-        android:layout_below="@+id/tvQuran"
-        android:src="@drawable/icon_doa" />
+       								 </TableRow>
 
-    <ImageButton
-        android:id="@+id/imageDzikir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvKiblat"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/icon_dzikir" />
+							          <TableRow
+							              android:id="@+id/tableRow8"
+							              android:layout_width="wrap_content"
+							              android:layout_height="wrap_content"
+							               android:gravity="center"
+							           >
 
-    <TextView
-        android:id="@+id/tvDoa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageDoa"
-        android:layout_below="@+id/imageDoa"
-        android:text="Doa Harian"
-        android:textColor="@color/text_green" />
+									                 <ImageButton
+											    		android:id="@+id/imageZakat"
+														android:layout_width="@dimen/width_column_front"
+												        android:layout_height="wrap_content"
+												   		android:background="@android:color/transparent"
+												    	android:src="@drawable/icon_zakat" />
+											        <ImageButton
+												        android:id="@+id/imageHadits"
+												        android:layout_width="@dimen/width_column_front"
+												        android:layout_height="wrap_content"
+												        android:background="@android:color/transparent"
+												        android:src="@drawable/icon_hadits" />
+											         <TextView
+												        android:id="@+id/wmpty"
+												        android:layout_width="@dimen/width_column_front"
+												        android:layout_height="wrap_content"
+												        android:gravity="center"
+												        android:textColor="@color/text_green"
+												        android:text="" />
+	        
+             							</TableRow>
+				         				 <TableRow
+											    android:id="@+id/tableRow9"
+											    android:layout_width="match_parent"
+											    android:gravity="center"
+											    android:layout_marginBottom="20dip"
+											    android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/tvDzikir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvDoa"
-        android:layout_alignBottom="@+id/tvDoa"
-        android:layout_alignLeft="@+id/imageDzikir"
-        android:text="Dzikir"
-        android:textColor="@color/text_green" />
-
-    <TextView
-        android:id="@+id/tvShalawat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvDzikir"
-        android:layout_alignBottom="@+id/tvDzikir"
-        android:layout_alignLeft="@+id/imageShalawat"
-        android:text="Shalawat"
-        android:textColor="@color/text_green" />
-
-    <ImageButton
-        android:id="@+id/imageZakat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvDoa"
-        android:layout_below="@+id/tvDoa"
-        android:src="@drawable/icon_zakat" />
-
-    <ImageButton
-        android:id="@+id/imageHadits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvDzikir"
-        android:layout_below="@+id/tvDzikir"
-        android:src="@drawable/icon_hadits" />
-
-    <TextView
-        android:id="@+id/tvZakat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageZakat"
-        android:layout_below="@+id/imageZakat"
-        android:text="Zakat Counter"
-        android:textColor="@color/text_green" />
-
-    <TextView
-        android:id="@+id/tvHadits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvZakat"
-        android:layout_alignBottom="@+id/tvZakat"
-        android:layout_alignLeft="@+id/imageHadits"
-        android:text="Sunnah"
-        android:textColor="@color/text_green" />
-
-    <ImageButton
-        android:id="@+id/imageShalawat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageNews"
-        android:layout_alignTop="@+id/imageDzikir"
-        android:src="@drawable/icon_sahalawat" />
-
-    <TextView
-        android:id="@+id/tvMasjid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/imageNews"
-        android:text="Berita Islami"
-        android:textColor="@color/text_green" />
-
+											    <TextView
+											        android:id="@+id/tvZakat"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:textColor="@color/text_green"
+											        android:text="Hitung Zakat" />
+											    
+											    <TextView
+											        android:id="@+id/tvSunnah"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:textColor="@color/text_green"
+											        android:text="Sunnah" />
+											      <TextView
+											        android:id="@+id/empty"
+											        android:layout_width="@dimen/width_column_front"
+											        android:layout_height="wrap_content"
+											        android:gravity="center"
+											        android:textColor="@color/text_green"
+											        android:text="" />
+											
+										</TableRow>   
+   							 </TableLayout>
+  				</LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -3,6 +3,8 @@ package com.cipto.doa;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
@@ -13,13 +15,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ActivityZakatFitrah extends Activity {
-	  TextView jumlah;
-	  TextView harga;
+	  EditText jumlah;
+	  EditText harga;
 	  TextView hasil;
 	  double zakat;
 	  double total;
@@ -28,16 +31,34 @@ public class ActivityZakatFitrah extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zakat_fitrah);
 		ActionBar ab = getActionBar(); 
-	    ab.setDisplayHomeAsUpEnabled(true);
-	    ab.setHomeButtonEnabled(true);
-	    ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
-	    ab.setTitle("Kalkulator Zakat");
+		   // ab.setDisplayHomeAsUpEnabled(true);
+		ab.setHomeButtonEnabled(true);
+		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
+	    ab.setTitle("Zakat Fitrah");
 	    
-	    jumlah=(TextView) findViewById(R.id.etJumlah);
-	    harga=(TextView) findViewById(R.id.etHarga);
+	    DBAdapter dbAdapter=new DBAdapter(getApplicationContext());
+	    dbAdapter.openDataBase();
+	    String defaultPokok=dbAdapter.getSettings(DBAdapter.SETTING_HARGA_BAHAN_POKOK).getString(2);
+	    
+	    jumlah=(EditText) findViewById(R.id.etJumlah);
+	    jumlah.setBackgroundResource(R.drawable.edittext);
+	    harga=(EditText) findViewById(R.id.etHarga);
+	    harga.setBackgroundResource(R.drawable.edittext);
+	    harga.setText(defaultPokok);
 	    final Button btHitung=(Button) findViewById(R.id.btHitung);
 	    hasil=(TextView) findViewById(R.id.tvResult);
-	  
+	    final Dialog dialog=new Dialog (this,R.style.DialogSetting);
+	    dialog.setContentView(R.layout.dialog_custom);
+	    final TextView etMessage=(TextView)  dialog.findViewById(R.id.dialog_text);
+	    Button btOk=(Button) dialog.findViewById(R.id.btOK);
+	    btOk.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+            	 dialog.dismiss();
+            }
+        });
+	    dialog.setTitle("Hasil Perhitungan");
 	    btHitung.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -49,8 +70,9 @@ public class ActivityZakatFitrah extends Activity {
 				}else{
 					zakat= Double.valueOf(jumlah.getText().toString())*2.5;
 					total=zakat*Double.valueOf(harga.getText().toString());
-					hasil.setText("Zakat yang harus anda bayar adalah "+ String.valueOf(zakat)+ " Kg atau uang senilai "+String.valueOf(total));
-					
+					//hasil.setText("Zakat yang harus anda bayar adalah "+ String.valueOf(zakat)+ " Kg atau uang senilai "+String.valueOf(total));
+					etMessage.setText("Zakat yang harus anda bayar adalah "+String.valueOf(zakat)+ " Kg atau uang senilai "+String.valueOf(total));
+					dialog.show();
 				}
 				
 			}

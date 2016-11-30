@@ -23,9 +23,8 @@ public class DzikirMain extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dzikir_main);
 		ActionBar ab = getActionBar(); 
-	    ab.setDisplayHomeAsUpEnabled(true);
-	    ab.setHomeButtonEnabled(true);
-	    ab.setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		ab.setHomeButtonEnabled(true);
+	    ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	    ab.setTitle("Dzikir");
 		final ListView lvDzikir=(ListView) findViewById(R.id.lvDzikir);
 		String[] values=new String[] {"Istighfar","Tahmid","Tasbih","Takbir","Tahlil"};
@@ -58,90 +57,26 @@ public class DzikirMain extends Activity {
                 	case 3:
                 		intent=new Intent(DzikirMain.this, Takbir.class);
                 		startActivity(intent);
+                	break;
                 	case 4:
                 		intent=new Intent(DzikirMain.this, Tahlil.class);
                 		startActivity(intent);
-                	break;
-                	
-                }
-           		
-                
-               
-        		
-                 
+                	break;             	
+                }       
 			}
 			
 		});
-		/*
-		Button btIstighfar=(Button) findViewById(R.id.btIstighfar);
-		Button btTahmid=(Button) findViewById(R.id.BtTahmid);
-		Button btTasbih=(Button) findViewById(R.id.BtTasbih);
-		Button btTakbir=(Button) findViewById(R.id.BtTakbir);
-		Button btTahlil=(Button) findViewById(R.id.BtTahlil);
-	
 		
-		btIstighfar.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent_istighfar=new Intent(DzikirMain.this,Istigfar.class);
-				startActivity(intent_istighfar);
-				
-			}
-		});
-		
-		btTahmid.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent_tasbih=new Intent(DzikirMain.this,Tasbih.class);
-				startActivity(intent_tasbih);
-				
-			}
-		});
-		
-		btTasbih.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent_tasbih=new Intent(DzikirMain.this,Tahmid.class);
-				startActivity(intent_tasbih);
-				
-			}
-		});
-		
-		btTakbir.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent_tasbih=new Intent(DzikirMain.this,Takbir.class);
-				startActivity(intent_tasbih);
-				
-			}
-		});
-		
-		btTahlil.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent_tasbih=new Intent(DzikirMain.this,Tahlil.class);
-				startActivity(intent_tasbih);
-				
-			}
-		});
-		
-		*/
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_display_surah, menu);
+	   // inflater.inflate(R.menu.menu_display_surah, menu);
 	    return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
-	  String id_surah= getIntent().getStringExtra("id");  
   	  switch (item.getItemId()) {
   	  	    case android.R.id.home:
   	    	Intent intentHome= new Intent(DzikirMain.this,Main.class);

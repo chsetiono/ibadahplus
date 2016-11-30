@@ -8,12 +8,10 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +28,8 @@ import android.widget.Toast;
         //baca textview
         TextView judulDoa = (TextView) findViewById(R.id.judulDoa);
 		TextView arab = (TextView) findViewById(R.id.arab);
+		Typeface localTypeface1 = Typeface.createFromAsset(getAssets(), "fonts/me_quran.ttf");
+		arab.setTypeface(localTypeface1);
 		TextView indo = (TextView) findViewById(R.id.indo);
 		TextView arti= (TextView) findViewById(R.id.arti);
 		
@@ -40,6 +40,7 @@ import android.widget.Toast;
         final int item=Integer.parseInt(intent.getStringExtra("id"));     
         
         Cursor doa=dbAdapter.getDoa(item);
+  
         ActionBar ab = getActionBar(); 
         // ab.setDisplayHomeAsUpEnabled(true);
      	ab.setHomeButtonEnabled(true);
@@ -65,13 +66,21 @@ import android.widget.Toast;
         
         // fetch value from key-value pair and make it visible on TextView.
 		int id=Integer.parseInt(intent.getStringExtra("id"));   
+		Cursor bookmark=dbAdapter.getBookmark(id);
   	  switch (item.getItemId()) {
   	    case R.id.bookmark:
-  	      addBookmark(item.toString());
+  	    	if(bookmark.getCount() == 0){
+  	    		addBookmark(intent.getStringExtra("id"));
+  	    	}
+  	    	Toast.makeText(DisplayDoa.this, "Doa telah ditambahkan ke bookmark", Toast.LENGTH_LONG).show();
   	      break;
   	  case R.id.next:
   		int page=id+1;
-		if(page==100){
+  		if(page==64){
+  			page=69;
+  		}
+  		
+		if(id==100){
 			Intent intentNext = new Intent(DisplayDoa.this, ListDoa.class);
 	        startActivity(intentNext);  
 		}else{
@@ -83,7 +92,10 @@ import android.widget.Toast;
   	      break;
   	 case R.id.prev:
   		int pagePrev=id-1;
-		if(pagePrev==0){
+  		if(pagePrev==68){
+  			pagePrev=63;
+  		}
+		if(id==1){
 			Intent intentPrev = new Intent(DisplayDoa.this, ListDoa.class);
 	        startActivity(intentPrev);  
 		}else{
@@ -110,8 +122,9 @@ import android.widget.Toast;
 		 ContentValues values = new ContentValues();
 		 values.put("tipe","1");
  	     values.put("id_item",id);
+ 	     
  	     dbAdapter.insertBookmark(values);
  	     dbAdapter.close();
- 	     Toast.makeText(DisplayDoa.this, "Doa telah ditambahkan ke bookmark", Toast.LENGTH_LONG).show();
+ 	     
 	}
 }

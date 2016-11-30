@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +42,8 @@ public class ActivityDisplaySunnah extends Activity{
 	   TextView judul = (TextView) findViewById(R.id.judul);
 	   TextView arab = (TextView) findViewById(R.id.arab);
 	   TextView indo = (TextView) findViewById(R.id.indo);
+	   Typeface localTypeface1 = Typeface.createFromAsset(getAssets(), "fonts/me_quran.ttf");
+	   arab.setTypeface(localTypeface1);
 	   judul.setText(sunnah.getString(2));
 	   arab.setText(sunnah.getString(3));
 	   indo.setText(sunnah.getString(4));
@@ -55,6 +58,7 @@ public class ActivityDisplaySunnah extends Activity{
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
 	  String id_sunnah= getIntent().getStringExtra("id");  
+      Cursor bookmark=dbAdapter.getBookmark(Integer.valueOf(id_sunnah));
   	  switch (item.getItemId()) {
   	  	case R.id.prev:
   	  		prevPage(id_sunnah);
@@ -63,11 +67,14 @@ public class ActivityDisplaySunnah extends Activity{
   			nextPage(id_sunnah);
 	      break;
   		case R.id.bookmark:
-  			addBookmark(id_sunnah);
+  			if(bookmark.getCount() == 0){
+  				addBookmark(id_sunnah);
+  			}
+  			 Toast.makeText(ActivityDisplaySunnah.this, "ditambahkan ke bookmark", Toast.LENGTH_LONG).show();
 	      break;
   	    case android.R.id.home:
           // app icon in action bar clicked; go home
-      	 Intent listDoa = new Intent(ActivityDisplaySunnah.this, ActivityQuran.class);
+      	 Intent listDoa = new Intent(ActivityDisplaySunnah.this, ActivitySunnah.class);
 	            listDoa.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		        startActivity(listDoa);  
           return true;
@@ -75,22 +82,19 @@ public class ActivityDisplaySunnah extends Activity{
   	  return true;
   	}
 	
-	
-	
-	
 	public void addBookmark(String id){
 		 ContentValues values = new ContentValues();
 		 values.put("tipe","4");
  	     values.put("id_item",id);
  	     dbAdapter.insertBookmark(values);
  	     dbAdapter.close();
- 	     Toast.makeText(ActivityDisplaySunnah.this, "ditambahkan ke bookmark", Toast.LENGTH_LONG).show();
+ 	    
 	}
 	
 	public void nextPage(String id){
 		int page=Integer.valueOf(id)+1;
 		Intent intentNext;
-		if(page==144){
+		if(Integer.valueOf(id)==144){
 			intentNext= new Intent(ActivityDisplaySunnah.this, ActivitySunnah.class);
 		}else{
 			intentNext = new Intent(ActivityDisplaySunnah.this, ActivityDisplaySunnah.class);
@@ -105,7 +109,7 @@ public class ActivityDisplaySunnah extends Activity{
 	public void prevPage(String id){
 		int page=Integer.valueOf(id)-1;
 		Intent intentPrev;
-		if(page==0){
+		if(Integer.valueOf(id)==1){
 			intentPrev= new Intent(ActivityDisplaySunnah.this,ActivitySunnah.class);
 		}else{
 			intentPrev = new Intent(ActivityDisplaySunnah.this, ActivityDisplaySunnah.class);

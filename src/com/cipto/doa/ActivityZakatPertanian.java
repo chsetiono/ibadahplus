@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
@@ -21,15 +22,16 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ActivityZakatPertanian extends Activity {
 	double nishab;
-	Spinner spPengairan;
+	CheckBox cbBiaya;
 	EditText etJumlahPanen;
 	CheckBox cbJenis;
 	Button btHitung;
-	AlertDialog.Builder alertDialog;
+	Dialog alertDialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,18 +40,25 @@ public class ActivityZakatPertanian extends Activity {
 	    ab.setHomeButtonEnabled(true);
 	    ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	    ab.setTitle("Zakat Pertanian");
-	    spPengairan=(Spinner) findViewById(R.id.spPengairan);
+	    cbBiaya=(CheckBox) findViewById(R.id.cbBiaya);
 	    etJumlahPanen=(EditText)findViewById(R.id.etJumlahPanen);
+	    etJumlahPanen.setBackgroundResource(R.drawable.edittext);
 	    cbJenis=(CheckBox) findViewById(R.id.cbJenis);
 	    btHitung=(Button) findViewById(R.id.btHitung);
-	    
-	    List<String> listPengairan= new ArrayList<String>();
-	    listPengairan.add("Dengan Biaya");
-	    listPengairan.add("Tanpa Biaya");
-	    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,listPengairan);		   
-	    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    spPengairan.setAdapter(dataAdapter);
-	    alertDialog= new AlertDialog.Builder(this);
+	  
+	   
+	    alertDialog= new Dialog(this,R.style.DialogSetting);
+	    alertDialog.setContentView(R.layout.dialog_custom);
+	    final TextView etMessage=(TextView)  alertDialog.findViewById(R.id.dialog_text);
+	    Button btOk=(Button) alertDialog.findViewById(R.id.btOK);
+	    btOk.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+            	 alertDialog.dismiss();
+            }
+        });
+	    alertDialog.setTitle("Hasil Perhitungan");
  btHitung.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -59,7 +68,13 @@ public class ActivityZakatPertanian extends Activity {
 				
 					String message="";
 					double pengali;
-					String pengairan=spPengairan.getSelectedItem().toString();
+					
+					if(cbBiaya.isChecked()){
+						pengali=10;
+					}else{
+						pengali=5;
+					}
+
 					
 					if(cbJenis.isChecked()){
 						nishab=520;
@@ -70,11 +85,7 @@ public class ActivityZakatPertanian extends Activity {
 						jumlahPanen=Double.valueOf(etJumlahPanen.getText().toString());
 					}
 					
-					if(pengairan.equals("Tanpa Biaya")){
-						pengali=10;
-					}else{
-						pengali=5;
-					}
+					
 					
 					if(jumlahPanen > nishab){
 						zakat=pengali/100*jumlahPanen;
@@ -82,7 +93,7 @@ public class ActivityZakatPertanian extends Activity {
 					}else{
 						message="Hasil pertanian kurang dari nisab";
 					}
-					alertDialog.setMessage(message);
+					etMessage.setText(message);
 					alertDialog.show();
 					
 			}

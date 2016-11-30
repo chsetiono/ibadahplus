@@ -53,13 +53,7 @@ public class HitungWaktu {
     protected int Custom; // Custom Setting
     private int Tehran; // Institute of Geophysics, University of Tehran
     protected int Ina;
-    
-    protected double koreksiSubuh;
-    protected double koreksiDzuhur;
-    protected double koreksiAshar;
-    protected double koreksiMaghrib;
-    protected double koreksiIsya;
-    private final double ikhtiyat=2/10/60;  //ikhtitat 2 menit
+    private final double ikhtiyat=2/60;  //ikhtitat 2 menit
 
     
     // Juristic Methods
@@ -92,7 +86,7 @@ public class HitungWaktu {
      * (in angle or minutes)
      */
     private double[] prayerTimesCurrent;
-    private int[] offsets;
+    private double[] offsets;
 
     public HitungWaktu() {
         // Initialize vars
@@ -151,7 +145,7 @@ public class HitungWaktu {
         // ------------------- Calc Method Parameters --------------------
 
         // Tuning offsets {fajr, sunrise, dhuhr, asr, sunset, maghrib, isha}
-        offsets = new int[8];
+        offsets = new double[8];
         offsets[0] = 0;
         offsets[1] = 0;
         offsets[2] = 0;
@@ -373,7 +367,7 @@ public class HitungWaktu {
     // compute mid-day (Dhuhr, Zawal) time
     private double computeMidDay(double t) {
         double T = equationOfTime(this.getJDate() + t);
-        double Z = fixhour(12 - T)+ikhtiyat;
+        double Z = fixhour(12 - T);
         return Z;
     }
 
@@ -559,18 +553,18 @@ public class HitungWaktu {
         double[] t = dayPortion(times);
 
         double Fajr = this.computeTime(
-                180 - methodParams.get(this.getCalcMethod())[0], t[0])+ikhtiyat+this.getKoreksiSubuh();
+                180 - methodParams.get(this.getCalcMethod())[0], t[0]);
         
         double Sunrise = this.computeTime(180 - 0.833, t[1]);
         
-        double Dhuhr = this.computeMidDay(t[2])+ikhtiyat+this.getKoreksiDzuhur();
-        double Asr = this.computeAsr(1 + this.getAsrJuristic(), t[3])+ikhtiyat+this.getKoreksiAshar();
+        double Dhuhr = this.computeMidDay(t[2]);
+        double Asr = this.computeAsr(1 + this.getAsrJuristic(), t[3]);
         double Sunset = this.computeTime(0.833, t[4]);
         
         double Maghrib = this.computeTime(
-                methodParams.get(this.getCalcMethod())[2], t[5])+ikhtiyat+this.getKoreksiMaghrib();
+                methodParams.get(this.getCalcMethod())[2], t[5]);
         double Isha = this.computeTime(
-                methodParams.get(this.getCalcMethod())[4], t[6])+ikhtiyat+this.getKoreksiIsya();
+                methodParams.get(this.getCalcMethod())[4], t[6]);
         double Imsyak =Fajr-0.1666667;
 
         double[] CTimes = {Fajr, Sunrise, Dhuhr, Asr, Sunset, Maghrib, Isha, Imsyak};
@@ -693,7 +687,7 @@ public class HitungWaktu {
 
     // Tune timings for adjustments
     // Set time offsets
-    public void tune(int[] offsetTimes) {
+    public void tune(double[] offsetTimes) {
 
         for (int i = 0; i < offsetTimes.length; i++) { // offsetTimes length
             // should be 7 in order
@@ -706,7 +700,7 @@ public class HitungWaktu {
 
     private double[] tuneTimes(double[] times) {
         for (int i = 0; i < times.length; i++) {
-            times[i] = times[i] + this.offsets[i] / 60.0;
+            times[i] = times[i] + this.offsets[i] / 60.0+ikhtiyat/60;
         }
 
         return times;
@@ -945,43 +939,5 @@ public class HitungWaktu {
         return timeNames;
     }
     
-    public void setKoreksiSubuh(double koreksi){
-    	koreksiSubuh=koreksi/600;
-    }
     
-    public double getKoreksiSubuh(){
-    	return koreksiSubuh;
-    }
-    
-    public void setKoreksiDzuhur(double koreksi){
-    	koreksiDzuhur=koreksi/600;
-    }
-    
-    public double getKoreksiDzuhur(){
-    	return koreksiDzuhur;
-    }
-    
-    public void setKoreksiAshar(double koreksi){
-    	koreksiAshar=koreksi/600;
-    }
-    
-    public double getKoreksiAshar(){
-    	return koreksiAshar/600;
-    }
-    
-    public void setKoreksiMaghrib(double koreksi){
-    	koreksiMaghrib=koreksi;
-    }
-    
-    public double getKoreksiMaghrib(){
-    	return koreksiMaghrib/600;
-    }
-    
-    public void setKoreksiIsya(double koreksi){
-    	koreksiIsya=koreksi;
-    }
-    
-    public double getKoreksiIsya(){
-    	return koreksiIsya/600;
-    }
 }

@@ -30,7 +30,8 @@ public class DBAdapter extends SQLiteOpenHelper {
 	public static final String TB_SURAH = "surah";
 	public static final String TB_QURAN = "quran";
 	public static final String TB_SUNNAH = "sunnah";
-	
+	public static final String TB_BOOKMARK = "bookmark";
+	public static final String TB_NEWS="news";
 	public static final int SETTING_LATITUDE=1;
 	public static final int SETTING_LONGITUDE=2;
 	public static final int SETTING_LOKASI=3;
@@ -48,6 +49,10 @@ public class DBAdapter extends SQLiteOpenHelper {
 	public static final int SETTING_KOREKSI_ASHAR=16;
 	public static final int SETTING_KOREKSI_MAGHRIB=17;
 	public static final int SETTING_KOREKSI_ISYA=18;
+	public static final int SETTING_HARGA_BAHAN_POKOK=20;
+	public static final int SETTING_HARGA_EMAS=21;
+	public static final int SETTING_HARGA_PERAK=22;
+	public static final int SETTING_QURAN_TERAHIR=23;
 	
 	
 	private SQLiteDatabase myDB;
@@ -258,12 +263,107 @@ public class DBAdapter extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.update(TB_SETTINGS, values, "id_setting=" + id, null);
 	}
+	
 	//inser to bookmark
 	public void insertBookmark(ContentValues values) {
 		  SQLiteDatabase database = this.getWritableDatabase();
 		  database.insert("bookmark", null, values);
 	}
 
+	
+	public List<HashMap<String,String>> getBookmarkQuran(){
+		List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor c;
+		
+		try {
+			c = db.rawQuery("SELECT bookmark.id_bookmark,bookmark.tipe,bookmark.id_item,quran.rowid,quran.nomor_ayat,quran.id_surat,surah.id_surah,surah.teks_indo FROM bookmark LEFT OUTER JOIN quran ON bookmark.id_item=quran.rowid LEFT OUTER JOIN surah ON bookmark.id_surat=surah.id_surah WHERE bookmark.tipe='3'" , null);
+			if(c == null) return null;
+			c.moveToFirst();
+			do {
+				
+				 HashMap<String, String> hm = new HashMap<String,String>();
+		           
+		          
+		            hm.put("id_bookmark",  c.getString(0));
+		            hm.put("nama_surah",c.getString(7)+" : ");
+		            hm.put("nomor_surat",c.getString(6));
+		            hm.put("nomor_ayat",c.getString(4));
+		            aList.add(hm);
+			} while (c.moveToNext()); 
+			
+			c.close();
+		} catch (Exception e) {
+			Log.e("tle99", e.getMessage());
+		}
+		
+		
+		db.close();		
+		
+		return aList;
+	}
+	
+	public List<HashMap<String,String>> getBookmarkDoa(){
+		List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor c;
+		
+		try {
+			c = db.rawQuery("SELECT bookmark.id_bookmark, bookmark.tipe,bookmark.id_item,tbdoa.id,tbdoa.judul FROM bookmark LEFT OUTER JOIN tbdoa ON bookmark.id_item=tbdoa.id WHERE bookmark.tipe='1'" , null);
+			if(c == null) return null;
+			c.moveToFirst();
+			do {
+				
+				 HashMap<String, String> hm = new HashMap<String,String>();
+		           
+		          
+		            hm.put("id_bookmark",  c.getString(0));
+		            hm.put("id_doa",c.getString(2));
+		            hm.put("judul",c.getString(4));
+		            aList.add(hm);
+			} while (c.moveToNext()); 
+			
+			c.close();
+		} catch (Exception e) {
+			Log.e("tle99", e.getMessage());
+		}
+		
+		
+		db.close();		
+		
+		return aList;
+	}
+	
+	public List<HashMap<String,String>> getBookmarkSunnah(){
+		List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor c;
+		
+		try {
+			c = db.rawQuery("SELECT bookmark.id_bookmark,bookmark.tipe,bookmark.id_item,sunnah.id_sunnah,sunnah.judul FROM bookmark LEFT OUTER JOIN sunnah ON bookmark.id_item=sunnah.id_sunnah WHERE bookmark.tipe='4'" , null);
+			if(c == null) return null;
+			c.moveToFirst();
+			do {
+				
+				 HashMap<String, String> hm = new HashMap<String,String>();
+	
+		            hm.put("id_bookmark",  c.getString(0));
+		            hm.put("id_sunnah",c.getString(2));
+		            hm.put("judul",c.getString(4));
+		            aList.add(hm);
+			} while (c.moveToNext()); 
+			
+			c.close();
+		} catch (Exception e) {
+			Log.e("tle99", e.getMessage());
+		}
+		
+		
+		db.close();		
+		
+		return aList;
+	}
+	
 	public Cursor getBookmark(int id){
 		SQLiteDatabase db = this.getWritableDatabase();
 		 Cursor c =
@@ -271,13 +371,15 @@ public class DBAdapter extends SQLiteOpenHelper {
 	                		"id_bookmark",
 	                		"tipe",
 	                		"id_item",
+	                		"id_surat",
 	                		}, 
-	                		"id_item=" + id, 
+	                		"id_item=" + String.valueOf(id), 
 	                		null,
 	                		null, 
 	                		null, 
 	                		null, 
 	                		null);
+		 		
 
 	        if (c != null) {
 	            c.moveToFirst();
@@ -287,6 +389,17 @@ public class DBAdapter extends SQLiteOpenHelper {
 	        return c;
 	}
 
+	public void deleteBookmark(int id){
+		SQLiteDatabase database = this.getWritableDatabase();
+		database.delete(TB_BOOKMARK,"id_bookmark=" + id, null);
+	}
+	
+	public void deleteBookmarkByItem(int id){
+		SQLiteDatabase database = this.getWritableDatabase();
+		database.delete(TB_BOOKMARK,"id_item=" + id, null);
+	}
+	
+	
 	public List<HashMap<String,String>> getAllSurah(){
 		List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -304,6 +417,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 		            hm.put("id_surah",  c.getString(0));
 		            hm.put("teks_indo",c.getString(2));
 		            hm.put("teks_arab",c.getString(3));
+		            hm.put("arti",c.getString(4));
 		            aList.add(hm);
 			} while (c.moveToNext()); 
 			
@@ -317,6 +431,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 		
 		return aList;
 	}
+	
 	public Cursor getSurah(int id){
 		SQLiteDatabase db = this.getWritableDatabase();
 		 Cursor c =
@@ -362,15 +477,25 @@ public class DBAdapter extends SQLiteOpenHelper {
 			c.moveToFirst();
 			do {
 				
-				 HashMap<String, String> hm = new HashMap<String,String>();
-		           
-		          
-		            hm.put("rowid",  c.getString(0));
-		            hm.put("nomor_ayat",c.getString(1));
-		            hm.put("id_surat",c.getString(2));
-		            hm.put("teks_arab",c.getString(3));
-		            hm.put("teks_indo",c.getString(4));
-		            aList.add(hm);
+				 HashMap<String, String> hm = new HashMap<String,String>();  
+		         hm.put("id_ayat",  c.getString(0));
+		         hm.put("nomor_ayat",c.getString(1));
+		         String nomor_ayat=c.getString(1);
+		         String nomor_arabic=nomor_ayat.replace('0', '\u0660')
+	                .replace('1', '\u0661')
+	                .replace('2', '\u0662')
+	                .replace('3', '\u0663')
+	                .replace('4', '\u0664')
+	                .replace('5', '\u0665')
+	                .replace('6', '\u0666')
+	                .replace('7', '\u0667')
+	                .replace('8', '\u0668')
+	                .replace('9', '\u0669');
+		         
+		         hm.put("id_surat",c.getString(2));
+		         hm.put("teks_arab",c.getString(3)+" ("+nomor_arabic+") ");
+		         hm.put("teks_indo",c.getString(4).replace("&quot;","\"")+"("+nomor_ayat+")");
+		         aList.add(hm);
 			} while (c.moveToNext()); 
 			
 			c.close();
@@ -390,7 +515,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	                db.query(true, TB_QURAN, new String[] {
 	                		"rowid",
 	                		"nomor_ayat",
-	                		"id_surah",
+	                		"id_surat",
 	                		"teks_arab",
 	                        "teks_indo",
 	                		}, 
@@ -468,6 +593,73 @@ public class DBAdapter extends SQLiteOpenHelper {
 	        return c;
 	}
 	
+	public List<HashMap<String,String>> getAllNews(){
+		List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor c;
+		
+		try {
+			c = db.rawQuery("SELECT * FROM " + TB_NEWS , null);
+			if(c == null) return null;
+			c.moveToFirst();
+			do {
+				
+				 HashMap<String, String> hm = new HashMap<String,String>();
+		            hm.put("id_news",  c.getString(0));
+		            hm.put("judul",c.getString(1));
+		            hm.put("isi",c.getString(2));
+		            hm.put("imageUrl",c.getString(3));
+		            hm.put("tanggal",c.getString(4));
+		            hm.put("sumber",c.getString(5));
+		            aList.add(hm);
+			} while (c.moveToNext()); 
+			
+			c.close();
+		} catch (Exception e) {
+			Log.e("tle99", e.getMessage());
+		}
+		
+		
+		db.close();		
+		
+		return aList;
+	}
+	public Cursor getNews(int id){
+		SQLiteDatabase db = this.getWritableDatabase();
+		 Cursor c =
+	                db.query(true, TB_NEWS, new String[] {
+	                		"id_news",
+	     		            "judul",
+	     		            "isi",
+	     		            "imageUrl",
+	     		            "tanggal",
+	     		            "sumber",
+	                		}, 
+	                		"id_news=" + id, 
+	                		null,
+	                		null, 
+	                		null, 
+	                		null, 
+	                		null);
+
+	        if (c != null) {
+	            c.moveToFirst();
+	        }
+	        
+	        db.close();	
+	        return c;
+	}
+	
+	public void insertNews(ContentValues values) {
+		  SQLiteDatabase database = this.getWritableDatabase();
+		  database.insert(TB_NEWS, null, values);
+	}
+	
+	public void deleteNews(Integer id){
+		SQLiteDatabase database = this.getWritableDatabase();
+		database.delete(TB_NEWS,"id_news=" + id, null);
+	}
+	
 	/***
 	 * Open database
 	 * @throws SQLException
@@ -521,6 +713,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 			}
 		}
 	}
+	
 	
 	// ---------------------------------------------
 	// PRIVATE METHODS

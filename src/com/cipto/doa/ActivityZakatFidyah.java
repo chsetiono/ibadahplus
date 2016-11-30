@@ -4,19 +4,15 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class ActivityZakatFidyah extends Activity {
 	TextView etBiaya;
@@ -24,7 +20,7 @@ public class ActivityZakatFidyah extends Activity {
 	double biaya;
 	double hari;
 	Button btHitung;
-	AlertDialog.Builder alertDialog;
+	Dialog alertDialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +32,22 @@ public class ActivityZakatFidyah extends Activity {
 	    ab.setTitle("Fidyah");
 	    
 	    etBiaya=(TextView) findViewById(R.id.etBiaya);
+	    etBiaya.setBackgroundResource(R.drawable.edittext);
 	    etHari=(TextView) findViewById(R.id.etHari);
+	    etHari.setBackgroundResource(R.drawable.edittext);
 	    btHitung=(Button) findViewById(R.id.btHitung);
-	    alertDialog= new AlertDialog.Builder(this);
+	    alertDialog= new Dialog(this,R.style.DialogSetting);
+	    alertDialog.setContentView(R.layout.dialog_custom);
+	    final TextView etMessage=(TextView)  alertDialog.findViewById(R.id.dialog_text);
+	    Button btOk=(Button) alertDialog.findViewById(R.id.btOK);
+	    btOk.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+            	 alertDialog.dismiss();
+            }
+        });
+	    alertDialog.setTitle("Hasil Perhitungan");
 	    btHitung.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -58,7 +67,7 @@ public class ActivityZakatFidyah extends Activity {
 				
 					jumlah=biaya*hari;
 					
-					alertDialog.setMessage("Fidyah yang harus anda bayar adalah Rp. "+String.valueOf(jumlah));
+					etMessage.setText("Fidyah yang harus anda bayar adalah Rp. "+String.valueOf(jumlah));
 					alertDialog.show();
 					
 			}
@@ -75,7 +84,6 @@ public class ActivityZakatFidyah extends Activity {
 	    return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
-	  String id_surah= getIntent().getStringExtra("id");  
   	  switch (item.getItemId()) {
   	  	    case android.R.id.home:
   	    	Intent intentHome= new Intent(ActivityZakatFidyah.this,ActivityZakat.class);

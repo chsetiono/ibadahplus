@@ -30,7 +30,6 @@ public class ActivityZakat extends Activity {
 		final ListView lvDzikir=(ListView) findViewById(R.id.lvDzikir);
 		String[] values=new String[] {"Zakat Fitrah","Zakat Profesi","Zakat Fidyah","Zakat Emas dan Perak","Zakat Pertanian","Zakat Rikaz (Barang Temuan)","Zakat Perdagangan"};
 		ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.list_dzikir,values);
-	
 		lvDzikir.setAdapter(adapter);
 		lvDzikir.setOnItemClickListener(new OnItemClickListener() {
 

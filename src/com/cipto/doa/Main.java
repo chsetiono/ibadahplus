@@ -3,12 +3,13 @@ package com.cipto.doa;
 import java.util.ArrayList;
  
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -19,7 +20,7 @@ import android.widget.ListView;
 
 
 
-public class Main extends Activity {
+public class Main extends FragmentActivity {
  
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -49,7 +50,7 @@ public class Main extends Activity {
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, ""));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+       // navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
        // navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
          
         navMenuIcons.recycle();
@@ -134,30 +135,40 @@ public class Main extends Activity {
     }
      
     private void displayView(int position){
+    	Intent i=getIntent();
+    	String page=i.getStringExtra("fragment");
         Fragment fragment = null;
-        //Intent i;
-        switch (position) {
-        case 0:
-            fragment = new HomeFragment();
-            //i = new Intent(this, TTS.class);
-            //startActivity(i);
-            break;
-        case 1:
-            fragment = new BookmarkFragment();
-            break;
-        case 2:
-            fragment = new SetLokasiFragment();
-            break;
-        case 3:
-            fragment = new SettingFragment();
-            break;
-       
-        default:
-            break;
+        if(page!=null){
+        	if(page.equals("bookmark")){
+        		position=1;
+        		getIntent().removeExtra("fragment");
+        	}
         }
+        	
+	       //Intent i;
+	    switch (position) {
+	        case 0:
+	            fragment = new HomeFragment();
+	            //i = new Intent(this, TTS.class);
+	            //startActivity(i);
+	            break;
+	        case 1:
+	            fragment = new BookmarkFragment();
+	            break;   
+	        case 2:
+	            fragment = new SetLokasiFragment();
+	            break;
+	        case 3:
+	            fragment = new SettingFragmentNew();
+	            break;
+	       
+	        default:
+	            break;
+	     }
+
          
         if(fragment != null){
-            FragmentManager fragmentManager = getFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
              
             mDrawerList.setItemChecked(position, true);

@@ -6,15 +6,11 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.LabeledIntent;
-import android.content.res.Resources;
 import android.graphics.*;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -23,18 +19,16 @@ import android.hardware.SensorManager;
 import android.util.Config;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Toast;
 public class ActivityKiblat extends Activity {
 
 	private static final String TAG = "Compass";
-	   
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private SampleView kiblat;
     private float[] mValues;
     private double lonMosque;
-       private double latMosque;
-       private LocationManager lm;
+    private double latMosque;
     private LocationListener locListenD;
 
     //for finding north direction
@@ -56,6 +50,10 @@ public class ActivityKiblat extends Activity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         mSensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) == null){
+        	  Toast.makeText(ActivityKiblat.this, "Maaf, perangkat anda tidak mendukung fitur ini", Toast.LENGTH_LONG).show();
+        }
+       
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         kiblat = new SampleView(this);
         setContentView(kiblat);

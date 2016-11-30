@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
@@ -29,7 +30,7 @@ public class ActivityZakatPerdagangan extends Activity {
 
 	double nishab=85;
 	Button btHitung;
-	AlertDialog.Builder alertDialog;
+	Dialog alertDialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,16 +39,38 @@ public class ActivityZakatPerdagangan extends Activity {
 		   // ab.setDisplayHomeAsUpEnabled(true);
 		ab.setHomeButtonEnabled(true);
 		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
-		ab.setTitle("Zakar Rikaz");
+		ab.setTitle("Zakar Perdagangan");
+
+	    DBAdapter dbAdapter=new DBAdapter(getApplicationContext());
+	    dbAdapter.openDataBase();
+	    String defaultEmas=dbAdapter.getSettings(DBAdapter.SETTING_HARGA_EMAS).getString(2);
+	    
 		etNilaiBarang=(EditText) findViewById(R.id.etNilaiBarang);
+		etNilaiBarang.setBackgroundResource(R.drawable.edittext);
 		etUang=(EditText) findViewById(R.id.etUang);
+		etUang.setBackgroundResource(R.drawable.edittext);
 		etPiutang=(EditText) findViewById(R.id.etPiutang);
+		etPiutang.setBackgroundResource(R.drawable.edittext);
 		etHutang=(EditText) findViewById(R.id.etHutang); 
+		etHutang.setBackgroundResource(R.drawable.edittext);
 		etPengeluaranLain=(EditText) findViewById(R.id.etPengeluaran); 
+		etPengeluaranLain.setBackgroundResource(R.drawable.edittext);
 		etEmas=(EditText) findViewById(R.id.etEmas); 
+		etEmas.setBackgroundResource(R.drawable.edittext);
+		etEmas.setText(defaultEmas);
 		btHitung=(Button) findViewById(R.id.btHitung);
-		alertDialog= new AlertDialog.Builder(this);
-		alertDialog= new AlertDialog.Builder(this);
+		alertDialog= new Dialog(this,R.style.DialogSetting);
+	    alertDialog.setContentView(R.layout.dialog_custom);
+	    final TextView etMessage=(TextView)  alertDialog.findViewById(R.id.dialog_text);
+	    Button btOk=(Button) alertDialog.findViewById(R.id.btOK);
+	    btOk.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+            	alertDialog.dismiss();
+            }
+        });
+		alertDialog.setTitle("Hasil Perhitungan");
 		btHitung.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -101,7 +124,7 @@ public class ActivityZakatPerdagangan extends Activity {
 					}
 					
 					
-					alertDialog.setMessage(message);
+					etMessage.setText(message);
 					alertDialog.show();
 					
 			}

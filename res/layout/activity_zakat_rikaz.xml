@@ -33,15 +33,7 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="number" />
-
-    <Button
-        android:id="@+id/btHitung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/etNilai"
-        android:layout_marginTop="96dp"
-        android:text="Hitung" />
+      <requestFocus />
 
     <EditText
         android:id="@+id/etEmas"
@@ -53,16 +45,8 @@
         android:ems="10"
         android:inputType="number" >
 
-        <requestFocus />
+      
     </EditText>
-
-    <TextView
-        android:id="@+id/TextView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView01"
-        android:layout_alignTop="@+id/etEmas"
-        android:text="Harga Emas per gram" />
 
     <TextView
         android:id="@+id/TextView01"
@@ -70,7 +54,33 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btHitung"
         android:layout_below="@+id/etNilai"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="49dp"
         android:text="Rp. " />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etEmas"
+        android:layout_alignLeft="@+id/textView1"
+        android:text="Harga Emas per gram" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btHitung"
+        android:layout_toRightOf="@+id/tvLabelJumlah"
+        android:text="Zakat rikaz = 20% nilai temuan" />
+
+    <Button
+        android:id="@+id/btHitung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView02"
+        android:layout_below="@+id/etEmas"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:text="Hitung" />
 
 </RelativeLayout>

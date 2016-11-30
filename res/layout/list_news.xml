@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
-        android:textColor="#CC0000"
+         android:textColor="#09dd03"
         android:textStyle="bold" />
 
     <TextView
@@ -30,6 +30,6 @@
         android:layout_below="@id/title"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:textColor="#007700" />
+         android:textColor="#09dd03" />
 
 </RelativeLayout>

@@ -7,7 +7,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DzikirMain" >
+ <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
     <TextView
         android:id="@+id/tvLabelJumlah"
         android:layout_width="wrap_content"
@@ -15,24 +24,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Jumlah Emas" />
-
-    <EditText
-        android:id="@+id/etJumlahEmas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvLabelJumlah"
-        android:layout_below="@+id/tvLabelJumlah"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/etJumlahEmas"
-        android:layout_alignBottom="@+id/etJumlahEmas"
-        android:layout_alignParentRight="true"
-        android:text="Gram" />
 
     <TextView
         android:id="@+id/textView2"
@@ -43,27 +34,6 @@
         android:layout_marginTop="15dp"
         android:text="Jumlah Perak" />
 
-    <EditText
-        android:id="@+id/etJumlahPerak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:ems="10"
-        android:inputType="numberDecimal" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/etJumlahPerak"
-        android:layout_alignBottom="@+id/etJumlahPerak"
-        android:layout_alignRight="@+id/textView1"
-        android:text="Gram" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -73,48 +43,61 @@
         android:layout_marginTop="14dp"
         android:text="Harga Emas per Gram" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="15dp"
-        android:text="Rp. " />
-
     <EditText
-        android:id="@+id/etHargaEmas"
+        android:id="@+id/etJumlahEmas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/tvLabelJumlah"
+        android:layout_below="@+id/tvLabelJumlah"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="numberDecimal" >
+        <requestFocus />
+      </EditText>
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/etHargaEmas"
+        android:layout_marginTop="14dp"
         android:text="Harga Perak per Gram" />
 
-    <TextView
-        android:id="@+id/textView7"
+    <EditText
+        android:id="@+id/etJumlahPerak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_below="@+id/textView6"
-        android:layout_marginTop="16dp"
-        android:text="Rp. " />
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btHitung"
+        android:layout_alignLeft="@+id/textView8"
+        android:text="Nisab perak : 595 gram" />
+
+    <EditText
+        android:id="@+id/etHargaEmas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView4"
+        android:ems="10"
+        android:inputType="number" >
+
+        
+    </EditText>
 
     <EditText
         android:id="@+id/etHargaPerak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView7"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_alignLeft="@+id/etHargaEmas"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView6"
         android:ems="10"
         android:inputType="number" />
 
@@ -122,9 +105,60 @@
         android:id="@+id/btHitung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView7"
+        android:background="@drawable/button"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/etHargaPerak"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dip"
+        android:selectAllOnFocus="true"
         android:text="Hitung" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btHitung"
+        android:layout_alignBottom="@+id/btHitung"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="Nisab emas : 85 gram" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etJumlahEmas"
+        android:layout_alignBottom="@+id/etJumlahEmas"
+        android:layout_toRightOf="@+id/etJumlahEmas"
+        android:text="gram" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etJumlahPerak"
+        android:layout_alignBottom="@+id/etJumlahPerak"
+        android:layout_toRightOf="@+id/etJumlahPerak"
+        android:text="gram" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etHargaEmas"
+        android:layout_alignBottom="@+id/etHargaEmas"
+        android:layout_toRightOf="@+id/etHargaEmas"
+        android:text="Rupiah " />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etHargaPerak"
+        android:layout_alignBottom="@+id/etHargaPerak"
+        android:layout_toRightOf="@+id/etHargaPerak"
+        android:text="Rupiah " />
+   
+      </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

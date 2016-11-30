@@ -6,7 +6,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,15 +22,18 @@ public class Takbir extends Activity {
 		setContentView(R.layout.takbir);
 		
 		ActionBar ab = getActionBar(); 
-	    ab.setDisplayHomeAsUpEnabled(true);
-	    ab.setHomeButtonEnabled(true);
-	    ab.setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		   // ab.setDisplayHomeAsUpEnabled(true);
+		    ab.setHomeButtonEnabled(true);
+		    ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	    ab.setTitle("Takbir");
 	    
 	    dbAdapter = new DBAdapter(getApplicationContext());
 		dbAdapter.openDataBase();
 		
 		final TextView textCount=(TextView) findViewById(R.id.countTakbir);
+		final TextView arab=(TextView) findViewById(R.id.arabTasbih);
+		Typeface myTypeface = Typeface.createFromAsset(getAssets(), "fonts/me_quran.ttf");
+		arab.setTypeface(myTypeface);
 		ImageButton btPlus=(ImageButton) findViewById(R.id.BtPlusTakbir);
 		ImageButton btReset=(ImageButton) findViewById(R.id.BtResetTakbir);
 		final ImageButton btSound=(ImageButton) findViewById(R.id.BtSound);
@@ -92,11 +95,10 @@ public class Takbir extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_display_surah, menu);
+	    inflater.inflate(R.menu.menu_display_dzikir, menu);
 	    return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
-	  String id_surah= getIntent().getStringExtra("id");  
   	  switch (item.getItemId()) {
   	  	case R.id.prev:
   	  		Intent intent= new Intent(Takbir.this, Tasbih.class);

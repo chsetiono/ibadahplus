@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+      <item android:id="@+id/search"
+        android:title="Cari"
+        android:icon="@drawable/icon_search" 
+        android:showAsAction="collapseActionView|ifRoom"
+        android:actionViewClass="android.widget.SearchView">
+ 
+    </item>
+     
+     <item
+        android:id="@+id/options"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/icon_more_green" 
+        android:title="@string/action_settings">
+      		<menu>
+		    	<item android:id="@+id/bookmark" android:title="Bookmark"></item>
+		    	<item android:id="@+id/lastread" android:title="Terakhir Dibaca"></item>
+		   </menu>
+	 </item>
+</menu>

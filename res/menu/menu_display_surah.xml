@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+     
+    
     <item
         android:id="@+id/prev"
         android:title="Previus"
@@ -14,6 +16,16 @@
         android:orderInCategory="100"
         android:showAsAction="always"/>
 
+      <item
+        android:id="@+id/options"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/icon_more_green" 
+        android:title="@string/action_settings">
+      		<menu>
+		    	<item android:id="@+id/cariayat" android:title="Cari Ayat"></item>
+		   </menu>
+	 </item>
      
 
 </menu>

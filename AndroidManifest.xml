@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cipto.doa"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" 
+ 
+    >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -27,10 +29,11 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
     	android:theme="@style/Theme.MyAppTheme"
-        
+        android:debuggable="true"
     >
         <activity
             android:name="com.cipto.doa.Main"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,26 +59,32 @@
         </activity>
         <activity
             android:name="com.cipto.doa.Istigfar"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_istigfar" >
         </activity>
         <activity
             android:name="com.cipto.doa.Tasbih"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_tasbih" >
         </activity>
         <activity
             android:name="com.cipto.doa.Tahmid"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_tahmid" >
         </activity>
         <activity
             android:name="com.cipto.doa.Takbir"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_takbir" >
         </activity>
         <activity
             android:name="com.cipto.doa.Tahlil"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_tahlil" >
         </activity>
         <activity
             android:name="com.cipto.doa.DzikirShalat"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_dzikir_shalat" >
         </activity>
         <activity
@@ -161,36 +170,47 @@
         </activity>
          <activity
             android:name="com.cipto.doa.ActivityZakatFitrah"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_activity_news" >
         </activity>
         
          <activity
             android:name="com.cipto.doa.ActivityZakatProfesi"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_activity_news" >
         </activity>
         
          <activity
             android:name="com.cipto.doa.ActivityZakatFidyah"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_activity_news" >
         </activity>
          <activity
             android:name="com.cipto.doa.ActivityZakatEmas"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_activity_news" >
         </activity>
          <activity
             android:name="com.cipto.doa.ActivityZakatPertanian"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_activity_news" >
         </activity>
         
           <activity
             android:name="com.cipto.doa.ActivityZakatRikaz"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_activity_news" >
         </activity>
         
          <activity
             android:name="com.cipto.doa.ActivityZakatPerdagangan"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_activity_news" >
         </activity>
+        
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzafSyBBDFDFxrYDadfaK-7HsCABg4LZpdk2wJnKZsfvq6A" />
     </application>
 	
 </manifest>

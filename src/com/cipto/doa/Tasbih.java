@@ -6,7 +6,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,14 +21,17 @@ public class Tasbih extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tasbih);
 		ActionBar ab = getActionBar(); 
-	    ab.setDisplayHomeAsUpEnabled(true);
-	    ab.setHomeButtonEnabled(true);
-	    ab.setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		   // ab.setDisplayHomeAsUpEnabled(true);
+		ab.setHomeButtonEnabled(true);
+		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	    ab.setTitle("Tasbih");
 	    dbAdapter = new DBAdapter(getApplicationContext());
 		dbAdapter.openDataBase();
 		
 		final TextView textCount=(TextView) findViewById(R.id.countTasbih);
+		final TextView arab=(TextView) findViewById(R.id.arabTasbih);
+		Typeface myTypeface = Typeface.createFromAsset(getAssets(), "fonts/me_quran.ttf");
+		arab.setTypeface(myTypeface);
 		ImageButton btPlus=(ImageButton) findViewById(R.id.BtPlusTasbih);
 		ImageButton btReset=(ImageButton) findViewById(R.id.BtResetTasbih);
 		final ImageButton btSound=(ImageButton) findViewById(R.id.BtSound);
@@ -90,11 +93,10 @@ public class Tasbih extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_display_surah, menu);
+	    inflater.inflate(R.menu.menu_display_dzikir, menu);
 	    return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
-	  String id_surah= getIntent().getStringExtra("id");  
   	  switch (item.getItemId()) {
   	  	case R.id.prev:
   	  		Intent intent= new Intent(Tasbih.this, Tahmid.class);

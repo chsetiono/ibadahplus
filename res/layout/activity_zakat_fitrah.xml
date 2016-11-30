@@ -17,50 +17,6 @@
         android:layout_marginTop="14dp"
         android:text="Harga Bahan Pokok" />
 
-    <EditText
-        android:id="@+id/etHarga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:inputType="number" 
-        android:ems="10" />
-
-    <Button
-        android:id="@+id/btHitung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etHarga"
-        android:layout_below="@+id/etHarga"
-        android:layout_marginTop="14dp"
-        android:text="Hitung" />
-
-    <EditText
-        android:id="@+id/etJumlah"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvLabelJumlah"
-        android:layout_below="@+id/tvLabelJumlah"
-        android:inputType="number" 
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:text="Jiwa" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/etHarga"
-        android:layout_alignLeft="@+id/textView2"
-        android:text="Rupiah" />
-
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="wrap_content"
@@ -76,5 +32,53 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Jumlah Jiwa" />
+
+    <EditText
+        android:id="@+id/etJumlah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvLabelJumlah"
+        android:layout_below="@+id/tvLabelJumlah"
+        android:ems="10"
+        android:inputType="number" >
+				<requestFocus />
+        
+    </EditText>
+
+    <EditText
+        android:id="@+id/etHarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btHitung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etHarga"
+        android:layout_below="@+id/etHarga"
+        android:background="@drawable/button"
+        android:layout_marginTop="10dip"
+        android:text="Hitung" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btHitung"
+        android:layout_alignLeft="@+id/textView2"
+        android:text="Rupiah" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etJumlah"
+        android:layout_alignBottom="@+id/etJumlah"
+        android:layout_toRightOf="@+id/etJumlah"
+        android:text="Jiwa" />
 
 </RelativeLayout>

@@ -9,25 +9,25 @@
     tools:context=".DisplayShalawat" >
  <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/judulShalawat"
         android:layout_toRightOf="@+id/latinShalawat" >
 
         <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
+             android:layout_width="match_parent"
             android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/judulShalawat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Judul"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:id="@+id/judulShalawat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Judul"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#09dd03"
+                android:textSize="24dp" />
 
     <TextView
         android:id="@+id/arabShalawat"
@@ -35,6 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/judulShalawat"
         android:layout_marginTop="30dp"
+        android:lineSpacingExtra="15dp"
+        android:textSize="32dp" 
+        android:layout_gravity="right"
+        android:layout_marginRight="12dp"
         android:text="Arab..." />
 
     <TextView
@@ -44,6 +48,7 @@
         android:layout_alignLeft="@+id/arabShalawat"
         android:layout_below="@+id/arabShalawat"
         android:layout_marginTop="17dp"
+        android:textSize="18dp"
         android:text="Latin...." />
 
     <TextView
@@ -53,33 +58,10 @@
         android:layout_alignLeft="@+id/latinShalawat"
         android:layout_below="@+id/latinShalawat"
         android:layout_marginTop="24dp"
+        android:textSize="18dp"
         android:text="Arti..." />
 
            </LinearLayout>
     </ScrollView>
-  <ImageButton
-        android:id="@+id/BtPrev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/icon_prev" />
-
-    <ImageButton
-        android:id="@+id/BtHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/BtPrev"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/icon_home" />
-
-    <ImageButton
-        android:id="@+id/BtNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/BtHome"
-        android:layout_marginRight="14dp"
-        android:src="@drawable/icon_next" />
  
 </RelativeLayout>

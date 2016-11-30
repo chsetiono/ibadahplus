@@ -1,22 +1,16 @@
 package com.cipto.doa;
 
-import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.List;
-
-import com.cipto.doa.ListDoa.ListClickHandler;
 import com.cipto.doa.R.id;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-//import android.support.v4.widget.CursorAdapter;
-import android.widget.CursorAdapter;
 import android.text.TextUtils;
-import android.view.LayoutInflater.Filter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -33,7 +27,6 @@ import android.view.MenuItem;
 @SuppressLint("NewApi") public class ListDoa extends Activity implements OnQueryTextListener{
 	DBAdapter dbAdapter;
 	ListView lv;
-	private CursorAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,19 +44,15 @@ import android.view.MenuItem;
  		String[] from = new String[] { "judul","id" };
 		int[] to = new int[] { R.id.judul, R.id.idDoa};
 		SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), listUsers, R.layout.list_row, from, to);
-	
 		lv.setAdapter(adapter);
 		lv.setTextFilterEnabled(true);
-		lv.setOnItemClickListener(new ListClickHandler());
-		//dbAdapter.close();
-		  
+		lv.setOnItemClickListener(new ListClickHandler()); 
     }
 
    
    
     public class ListClickHandler implements OnItemClickListener{
-    	 
-        
+
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View view, int position,
 				long arg3) {
@@ -72,8 +61,7 @@ import android.view.MenuItem;
 	        String text = listText.getText().toString();
 			Intent intent = new Intent(ListDoa.this, DisplayDoa.class);
 	        intent.putExtra("id",text);
-	        startActivity(intent);  
-			
+	        startActivity(intent);  	
 		}
          
     }
@@ -123,9 +111,7 @@ import android.view.MenuItem;
 			        startActivity(home);  
 	            return true;
 	            default:
-	            return super.onOptionsItemSelected(item); 
-	            
-	           
+	            return super.onOptionsItemSelected(item);      
 	    }
 	}
 }

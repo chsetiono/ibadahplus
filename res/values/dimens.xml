@@ -3,5 +3,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-
+    <dimen name="width_column_front">50dp</dimen>
+    <dimen name="height_column_front">50dp</dimen>
+    <dimen name="height_bg_front">100dp</dimen>
+    
+ <dimen name="margin_menu_dasboard">10dip</dimen>
 </resources>

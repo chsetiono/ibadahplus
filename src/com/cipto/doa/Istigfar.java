@@ -6,12 +6,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,14 +21,17 @@ public class Istigfar extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.istigfar);
 		ActionBar ab = getActionBar(); 
-	    ab.setDisplayHomeAsUpEnabled(true);
-	    ab.setHomeButtonEnabled(true);
-	    ab.setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		   // ab.setDisplayHomeAsUpEnabled(true);
+		    ab.setHomeButtonEnabled(true);
+		    ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	    ab.setTitle("Istighfar");
 	     
 		dbAdapter = new DBAdapter(getApplicationContext());
 		dbAdapter.openDataBase();
 		final TextView textCount=(TextView) findViewById(R.id.countIstighfar);
+		final TextView arab=(TextView) findViewById(R.id.arabIstighfar);
+		Typeface myTypeface = Typeface.createFromAsset(getAssets(), "fonts/me_quran.ttf");
+		arab.setTypeface(myTypeface);
 		ImageButton btPlus=(ImageButton) findViewById(R.id.BtPlusIstighfar);
 		ImageButton btReset=(ImageButton) findViewById(R.id.BtResetIstighfar);
 		final ImageButton btSound=(ImageButton) findViewById(R.id.BtSound);
@@ -94,11 +96,10 @@ public class Istigfar extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_display_surah, menu);
+	    inflater.inflate(R.menu.menu_display_dzikir, menu);
 	    return true;
 	}
-	public boolean onOptionsItemSelected(MenuItem item) {
-	  String id_surah= getIntent().getStringExtra("id");  
+	public boolean onOptionsItemSelected(MenuItem item) { 
   	  switch (item.getItemId()) {
   	  	case R.id.prev:
   	  		Intent intent= new Intent(Istigfar.this, DzikirMain.class);

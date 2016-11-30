@@ -1,0 +1,182 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SecondActivity" >
+
+     <ScrollView
+         android:id="@+id/scrollView1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/textView3"
+         android:layout_alignParentTop="true" >
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical" >
+     <TextView
+         android:id="@+id/textView3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/textView4"
+         android:text="Subuh" />
+
+     <TextView
+         android:id="@+id/valueAshar"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/textView5"
+         android:layout_alignBottom="@+id/textView5"
+         android:layout_alignRight="@+id/sbSubuh"
+         android:layout_below="@+id/TextView5"
+         android:gravity="right"
+         android:text="0" />
+
+     <TextView
+         android:id="@+id/valueMaghrib"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView6"
+         android:layout_alignBottom="@+id/textView6"
+         android:layout_alignRight="@+id/sbSubuh"
+          android:gravity="right"
+         android:text="0" />
+
+     <TextView
+         android:id="@+id/valueIsya"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView7"
+         android:layout_alignBottom="@+id/textView7"
+         android:layout_alignRight="@+id/sbSubuh"
+          android:gravity="right"
+         android:text="0" />
+
+     <TextView
+         android:id="@+id/textView4"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/sbSubuh"
+         android:layout_marginTop="5dip"
+         android:text="Dzuhur" />
+
+     <TextView
+         android:id="@+id/textView5"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/sbDzuhur"
+         android:layout_marginTop="5dip"
+         android:text="Ashar" />
+
+     <TextView
+         android:id="@+id/textView6"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_marginTop="5dip"
+         android:layout_below="@+id/sbAshar"
+         android:text="Maghrib" />
+
+     <TextView
+         android:id="@+id/textView7"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/sbMaghrib1"
+         android:layout_marginTop="5dip"
+         android:text="Isya" />
+
+     <SeekBar
+         android:id="@+id/sbDzuhur"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/valueDzuhur" 
+         android:progressDrawable="@drawable/seekbar_progress"
+         android:thumb="@drawable/thumb"
+         />
+
+     <SeekBar
+         android:id="@+id/sbIsya"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+          android:progressDrawable="@drawable/seekbar_progress"
+         android:thumb="@drawable/thumb"
+         android:layout_below="@+id/textView7" />
+
+     <Button
+         android:id="@+id/btBatal"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/btSimpan"
+         android:layout_alignBottom="@+id/btSimpan"
+         android:layout_alignParentRight="true"
+        android:layout_marginTop="10dip"
+         android:text="Batal" />
+
+     <SeekBar
+         android:id="@+id/sbSubuh"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/textView3"
+         android:layout_below="@+id/valueSubuh"
+         android:progressDrawable="@drawable/seekbar_progress"
+         android:thumb="@drawable/thumb" />
+
+     <Button
+         android:id="@+id/btSimpan"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/sbIsya"
+         android:layout_below="@+id/sbIsya"
+         android:layout_marginTop="10dip"
+         android:text="Simpan" />
+
+     <SeekBar
+         android:id="@+id/sbMaghrib1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/textView6"
+         android:progressDrawable="@drawable/seekbar_progress"
+         android:thumb="@drawable/thumb" />
+
+     <TextView
+         android:id="@+id/valueSubuh"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/textView3"
+         android:layout_alignBottom="@+id/textView3"
+         android:layout_alignRight="@+id/sbSubuh"
+         android:gravity="right"
+         android:text="0" />
+
+     <TextView
+         android:id="@+id/valueDzuhur"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/textView4"
+         android:layout_alignBottom="@+id/textView4"
+         android:layout_alignRight="@+id/sbSubuh"
+         android:gravity="right"
+         android:text="0" />
+
+     <SeekBar
+         android:id="@+id/sbAshar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/valueAshar"
+         android:progressDrawable="@drawable/seekbar_progress"
+         android:thumb="@drawable/thumb" />
+
+         </RelativeLayout>
+     </ScrollView>
+   
+</RelativeLayout>

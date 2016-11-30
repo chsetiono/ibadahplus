@@ -3,17 +3,15 @@
     <item
         android:id="@+id/addBookmark"
         android:title="Bookmark"
-        android:icon="@drawable/icon_bookmark"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
+     <item
+        android:id="@+id/bacaTerakhir"
+        android:title="Tandai terakhir dibaca"
         android:orderInCategory="100"
         android:showAsAction="always"/>
      
-      <item
-        android:id="@+id/share"
-        android:title="Share"
-        android:icon="@drawable/icon_next"
-        android:orderInCategory="100"
-        android:showAsAction="always"/>
-
+     
      
 
 </menu>

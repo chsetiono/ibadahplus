@@ -1,16 +1,14 @@
 package com.cipto.doa;
 
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.cipto.doa.ActivityQuran.ListClickHandler;
-
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -44,10 +42,12 @@ public class ActivityNews extends Activity {
   ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
   listview = (ListView) findViewById(R.id.lvNews);
   setListViewAdapter();
-  getDataFromInternet();
-  //listview.setOnItemClickListener(new ListClickHandler());
-  
-
+  //cel koneksi
+  	if (isNetworkAvailable(getApplicationContext())) {
+  		getDataFromInternet();
+	} else {
+		Toast.makeText(getApplicationContext(), "TIdak ada koneksi internet", Toast.LENGTH_LONG).show();
+	}
  }
 
  private void getDataFromInternet() {
@@ -58,17 +58,6 @@ public class ActivityNews extends Activity {
   listNews = new ArrayList<News>();
   adapter = new CustomListAdapter(this, R.layout.list_news, listNews);
   listview.setAdapter(adapter);
-  /*
-  listview.setOnItemClickListener(new OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> adapterView, View view,
-              int position, long id) {
-          Intent intent = new Intent(ActivityNews.this, ActivityDisplaySunnah.class);
-          startActivity(intent);    
-
-      }
-  });
-  */
  }
  
  //parse response data after asynctask finished
@@ -78,9 +67,7 @@ public class ActivityNews extends Activity {
    JSONObject json = new JSONObject(result);
    JSONArray jArray = new JSONArray(json.getString("result"));
    for (int i = 0; i < jArray.length(); i++) {
-
     JSONObject jObject = jArray.getJSONObject(i);
-    
     News news = new News();
     news.setJudul(jObject.getString("judul"));
     news.setImageUrl(jObject.getString("image"));
@@ -88,7 +75,6 @@ public class ActivityNews extends Activity {
     news.setIsi(jObject.getString("isi"));
     news.setTanggal(jObject.getString("tanggal"));
     news.setSumber(jObject.getString("sumber"));
-    
     listNews.add(news);
    }
 
@@ -117,19 +103,31 @@ public class ActivityNews extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.main, menu);
+	    inflater.inflate(R.menu.menu_artikel, menu);
 	    return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
-	  String id_sunnah= getIntent().getStringExtra("id");  
 	  switch (item.getItemId()) {
 	    case android.R.id.home:
        // app icon in action bar clicked; go home
 	    	Intent listDoa = new Intent(ActivityNews.this, Main.class);
 	            listDoa.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		        startActivity(listDoa);  
-       return true;
+       break;
+	    case R.id.refresh:
+	    	if (isNetworkAvailable(getApplicationContext())) {
+	    		setListViewAdapter();
+	      		getDataFromInternet();
+	    	} else {
+	    		Toast.makeText(getApplicationContext(), "TIdak ada koneksi internet", Toast.LENGTH_LONG).show();
+	    	}
+	   return true;
 	  }
 	  return true;
 	}
+	
+	 public boolean isNetworkAvailable(final Context context) {
+		    final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+		    return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+		}
 }

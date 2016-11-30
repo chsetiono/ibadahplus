@@ -12,7 +12,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,8 +33,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import android.webkit.WebView;
-import android.widget.ListView;
+
 
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,44 +47,36 @@ public class ActivityDisplayNews extends Activity {
 	TextView tanggal;
 	TextView sumber;
 	ImageView image;
+	String imageUrl;
+	Intent intent;
 	
-	private WebView webView;
-	private final static String url = "http://www.ppiln.or.id/apitest.php?data=1";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_news);
-		
-		Intent intent = getIntent();
-		final String id=intent.getStringExtra("id");
+		intent = getIntent();
 		final String judulVal=intent.getStringExtra("judul");
 		final String tanggalVal=intent.getStringExtra("tanggal");
-		final String isiVal=intent.getStringExtra("isi");
-		final String imageUrl=intent.getStringExtra("imageUrl");
-		final String sumberVal=intent.getStringExtra("sumber");
-		
-		
-		
+		final String isiVal=intent.getStringExtra("isi").replace("&quot;","\"");
+		imageUrl=intent.getStringExtra("imageUrl");
+		String sumberVal=intent.getStringExtra("sumber");
 		judul=(TextView) findViewById(R.id.judulNews);
 		tanggal=(TextView) findViewById(R.id.tanggal);
 		image=(ImageView) findViewById(R.id.imageNews);
 		isi=(TextView) findViewById(R.id.isiNews);
 		sumber=(TextView) findViewById(R.id.sumber);
+		
 		judul.setText(judulVal);
 		tanggal.setText(tanggalVal);
 		isi.setText(isiVal);
 		sumber.setText("Sumber : "+sumberVal);
-		Picasso.with(this).load(imageUrl).fit().into(image);
-		
+		Picasso.with(getApplicationContext()).load(imageUrl).into(image);
 	    dbAdapter = new DBAdapter(getApplicationContext());
 	    dbAdapter.openDataBase();
 		ActionBar ab = getActionBar(); 
 		// ab.setDisplayHomeAsUpEnabled(true);
 		ab.setHomeButtonEnabled(true);
 		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
-		
-	    //new ExecuteTask(this, url).execute();
-	
 	}
 
 	@Override
@@ -96,11 +87,15 @@ public class ActivityDisplayNews extends Activity {
 	    return true;
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
-	  String id_sunnah= getIntent().getStringExtra("id");  
+	  String id_news= getIntent().getStringExtra("id");  
+	  Cursor bookmark=dbAdapter.getNews(Integer.valueOf(id_news));
   	  switch (item.getItemId()) {
   	  	case R.id.bookmark:
   	  		Intent intent = getIntent();
-  			addBookmark(intent.getStringExtra("id"));
+  	  		if(bookmark.getCount() == 0){
+  	  			addBookmark(intent.getStringExtra("id"));
+  	  		}
+  			Toast.makeText(ActivityDisplayNews.this, "ditambahkan ke bookmark", Toast.LENGTH_SHORT).show();
 	      break;
   	    case android.R.id.home:
           // app icon in action bar clicked; go home
@@ -117,18 +112,19 @@ public class ActivityDisplayNews extends Activity {
 	
 	public void addBookmark(String id){
 		 ContentValues values = new ContentValues();
-		 values.put("tipe","5");
- 	     values.put("id_item",id);
- 	     dbAdapter.insertBookmark(values);
- 	     dbAdapter.close();
- 	     Toast.makeText(ActivityDisplayNews.this, "ditambahkan ke bookmark", Toast.LENGTH_SHORT).show();
+		 values.put("judul",judul.getText().toString());
+ 	     values.put("isi",isi.getText().toString());
+ 	     values.put("imageUrl",imageUrl);
+ 	     values.put("tanggal",tanggal.getText().toString());
+ 	     values.put("sumber",intent.getStringExtra("sumber"));
+ 	     dbAdapter.insertNews(values);
+ 	     dbAdapter.close(); 
 	}
 	
+	
 	private class ExecuteTask extends AsyncTask<Void, Void, String> {
-
 		 private String url;
 		 private ProgressDialog dialog;
-	
 		 public ExecuteTask(Activity activity, String url) {
 		  super();
 		  this.url = url;

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,27 +12,47 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ActivityZakatRikaz extends Activity {
 	EditText etNilaiTemuan;
 	EditText etHargaEmas;
 	double nishab=85;
 	Button btHitung;
-	AlertDialog.Builder alertDialog;
+	Dialog alertDialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zakat_rikaz);
 		ActionBar ab = getActionBar(); 
 		   // ab.setDisplayHomeAsUpEnabled(true);
+		
+		DBAdapter dbAdapter=new DBAdapter(getApplicationContext());
+	    dbAdapter.openDataBase();
+	    String defaultEmas=dbAdapter.getSettings(DBAdapter.SETTING_HARGA_EMAS).getString(2);
+	    
 		ab.setHomeButtonEnabled(true);
 		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 		ab.setTitle("Zakar Rikaz");
 		etNilaiTemuan=(EditText) findViewById(R.id.etNilai);
+		etNilaiTemuan.setBackgroundResource(R.drawable.edittext);
 		etHargaEmas=(EditText) findViewById(R.id.etEmas);  
-		btHitung=(Button) findViewById(R.id.btHitung);
-		alertDialog= new AlertDialog.Builder(this);
+		etHargaEmas.setBackgroundResource(R.drawable.edittext);
+		etHargaEmas.setText(defaultEmas);
 		
+		btHitung=(Button) findViewById(R.id.btHitung);
+		alertDialog= new Dialog(this,R.style.DialogSetting);
+	    alertDialog.setContentView(R.layout.dialog_custom);
+	    final TextView etMessage=(TextView)  alertDialog.findViewById(R.id.dialog_text);
+	    Button btOk=(Button) alertDialog.findViewById(R.id.btOK);
+	    btOk.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+            	 alertDialog.dismiss();
+            }
+        });
+		alertDialog.setTitle("Hasil Perhitungan");
 		btHitung.setOnClickListener(new View.OnClickListener(){
 
 			@Override
@@ -54,7 +75,7 @@ public class ActivityZakatRikaz extends Activity {
 				}else{
 					message="Nilai temuan kurang dari nishab.";
 				}
-				alertDialog.setMessage(message);
+				etMessage.setText(message);
 				alertDialog.show();
 			}
 			

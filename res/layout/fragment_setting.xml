@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cbSubuh"
         android:layout_below="@+id/cbDzuhur"
-        android:text="CheckBox" />
+        android:text="Maghrib" />
 
     <CheckBox
         android:id="@+id/cbIsya"
@@ -139,13 +139,6 @@
         android:layout_below="@+id/spMetode"
         android:text="Perhitungan Ashar" />
 
-    <Spinner
-        android:id="@+id/spAshar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView8" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -211,6 +204,13 @@
         android:layout_alignLeft="@+id/valueMaghrib"
         android:layout_alignTop="@+id/sbIsya"
         android:text="0" />
+
+    <Spinner
+        android:id="@+id/spAshar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView8" />
 
  </RelativeLayout>
 

@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SecondActivity" >
+   <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tableRow1"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+    
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+ 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:id="@+id/rgMetode"
+        android:checkedButton="@+id/sound" >
+		  <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/m0"
+            android:textColor="@color/text_gray"
+            android:text="Ithna Ashari, Jafari" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/m1"
+            android:textColor="@color/text_gray"
+            android:text="University of Islamic Sciences, Karachi" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/m2"
+            android:textColor="@color/text_gray"
+            android:text="Islamic Society of North America (ISNA)" />
+        
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/m3"
+            android:textColor="@color/text_gray"
+            android:text="Muslim World League (MWL)" />
+        
+         <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/m4"
+            android:textColor="@color/text_gray"
+            android:text="Umm al-Qura, Makkah" />
+         
+          <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:id="@+id/m5"
+             android:textColor="@color/text_gray"
+            android:text="Egyptian General Authority of Survey" />
+          
+           <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:id="@+id/m6"
+            android:text="Institute of Geophysics, University of Tehran" />
+            <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:id="@+id/m7"
+            android:text="kementerian Agama Republik Indonesia"/>
+
+    </RadioGroup>
+   </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+       
+    </TableRow>
+
+        <Button
+        android:id="@+id/btSimpan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tableRow2"
+        android:layout_below="@+id/tableRow1"
+        android:layout_marginTop="10dip"
+        android:text="Simpan" />
+
+     <Button
+         android:id="@+id/btBatal"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentRight="true"
+         android:layout_marginTop="10dip"
+         android:text="Batal" />
+ 
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

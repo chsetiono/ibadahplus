@@ -9,22 +9,12 @@
     tools:context=".Tasbih" >
 
     <TextView
-        android:id="@+id/arabTasbih"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="19dp"
-        android:layout_marginTop="39dp"
-        android:textSize="20dp"
-        
-        android:text="سُبْحَانَ اللّهُ " />
-
-    <TextView
         android:id="@+id/artiTasbih"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/arabTasbih"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+         android:textSize="18dp"
         android:text="Subhanallah" />
 
     <TextView
@@ -34,17 +24,8 @@
         android:layout_alignLeft="@+id/artiTasbih"
         android:layout_below="@+id/artiTasbih"
         android:layout_marginTop="23dp"
+         android:textSize="18dp"
         android:text="“Maha Suci Allah" />
-
-    <TextView
-        android:id="@+id/countTasbih"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="0"
-        android:textSize="36dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
         android:id="@+id/BtSound"
@@ -54,7 +35,7 @@
         android:layout_alignLeft="@+id/latinTasbih"
         android:background="#ffffff"
         android:scaleType="fitXY"
-        android:src="@drawable/icon_spund_on" />
+        android:src="@drawable/sound_on" />
 
     <ImageButton
         android:id="@+id/BtResetTasbih"
@@ -76,5 +57,27 @@
         android:background="#ffffff"
         android:scaleType="fitXY"
         android:src="@drawable/icon_plus" />
+
+    <TextView
+        android:id="@+id/arabTasbih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+         android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:lineSpacingExtra="15dp"
+        android:text="سُبْحَانَ اللّهُ "
+        android:textSize="36dp" />
+
+    <TextView
+        android:id="@+id/countTasbih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/BtPlusTasbih"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="36dp" />
 
 </RelativeLayout>

@@ -39,9 +39,9 @@ public class GetJsonFromUrlTask extends AsyncTask<Void, Void, String> {
   // Create a progress dialog
   dialog = new ProgressDialog(activity); 
   // Set progress dialog title
-  dialog.setTitle("Getting Data");
+  //dialog.setTitle("Memuat Data");
   // Set progress dialog message
-  dialog.setMessage("Loading...");
+  dialog.setMessage("Memuat Data...");
   dialog.setIndeterminate(false);
   // Show progress dialog
   dialog.show(); 
@@ -128,4 +128,6 @@ public class GetJsonFromUrlTask extends AsyncTask<Void, Void, String> {
  
   }
  }
+ 
+
 }

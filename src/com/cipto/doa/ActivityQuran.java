@@ -2,15 +2,15 @@ package com.cipto.doa;
 
 import java.util.HashMap;
 import java.util.List;
-
 import com.cipto.doa.R.id;
-
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,7 +33,7 @@ public class ActivityQuran extends Activity implements OnQueryTextListener{
 		setContentView(R.layout.activity_quran);
 		
 		ActionBar ab = getActionBar(); 
-		// ab.setDisplayHomeAsUpEnabled(true);
+		ab.setDisplayHomeAsUpEnabled(false);
 		ab.setHomeButtonEnabled(true);
 		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	    dbAdapter = new DBAdapter(getApplicationContext());
@@ -42,8 +42,8 @@ public class ActivityQuran extends Activity implements OnQueryTextListener{
 		lv = (ListView)findViewById(id.listSurah);
 		List<HashMap<String,String>> listUsers = dbAdapter.getAllSurah();
 			
-	 	String[] from = new String[] { "teks_indo","teks_arab","id_surah" };
-		int[] to = new int[] { R.id.judul, R.id.teksArab, R.id.idDoa};
+	 	String[] from = new String[] {"id_surah", "teks_indo","teks_arab","id_surah","arti"};
+		int[] to = new int[] {R.id.tvNo, R.id.judul, R.id.teksArab, R.id.idDoa,R.id.arti};
 		SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), listUsers, R.layout.list_row_surah, from, to);
 		
 		lv.setAdapter(adapter);
@@ -59,23 +59,26 @@ public class ActivityQuran extends Activity implements OnQueryTextListener{
 		        String text = listText.getText().toString();
 				Intent intent = new Intent(ActivityQuran.this, ActivityDisplaySurah.class);
 		        intent.putExtra("id",text);
+		        intent.putExtra("nomorAyat","1");
 		        startActivity(intent);  
+		        
 			}
 	  
 	}
-    @SuppressLint("NewApi") @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	MenuInflater inflater = getMenuInflater();
-    	inflater.inflate(R.menu.menu_search, menu);
-    	 
-    	// Associate searchable configuration with the SearchView
-    	SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-    	//searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-    	//searchView.setSubmitButtonEnabled(true);
+	
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu_search_quran, menu);
+	    SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
     	searchView.setOnQueryTextListener(this);
     	
     	return super.onCreateOptionsMenu(menu);
-    }
+	   
+	}
+    
 	@Override
 	public boolean onQueryTextChange(String newText) {
 		// TODO Auto-generated method stub
@@ -101,12 +104,36 @@ public class ActivityQuran extends Activity implements OnQueryTextListener{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) { 
 	    switch (item.getItemId()) {
-	        case android.R.id.home:
+	        	case android.R.id.home:
 	            // app icon in action bar clicked; go home
-	        	 Intent home = new Intent(ActivityQuran.this, Main.class);
+	        		Intent home = new Intent(ActivityQuran.this, Main.class);
 		            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			        startActivity(home);  
 	            return true;
+	        	case R.id.search:
+		            // app icon in action bar clicked; go home
+		        
+		        return true;
+	        	case R.id.bookmark:
+	        		Intent bookmark = new Intent(ActivityQuran.this, Main.class);
+	        		bookmark.putExtra("fragment", "bookmark");
+			        startActivity(bookmark); 
+		        return true;
+	        	case R.id.lastread:
+	        		String id_ayat=dbAdapter.getSettings(dbAdapter.SETTING_QURAN_TERAHIR).getString(2);
+	        		if(id_ayat==null){
+	        			id_ayat="1";
+	        		}
+	        		String id_surat=dbAdapter.getAyat(Integer.valueOf(id_ayat)).getString(2);
+	        		String nomor_surat=dbAdapter.getAyat(Integer.valueOf(id_ayat)).getString(1);
+	        		
+	        		
+	        		Intent lastread= new Intent(ActivityQuran.this, ActivityDisplaySurah.class);
+	        		lastread.putExtra("id",id_surat);
+	        		lastread.putExtra("nomorAyat",nomor_surat);
+			        startActivity(lastread); 
+		        return true;
+	            
 	            default:
 	            return super.onOptionsItemSelected(item);       
 	    }

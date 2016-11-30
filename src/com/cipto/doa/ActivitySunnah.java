@@ -2,15 +2,12 @@ package com.cipto.doa;
 
 import java.util.HashMap;
 import java.util.List;
-
 import com.cipto.doa.R.id;
-
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,9 +31,9 @@ public class ActivitySunnah extends Activity implements OnQueryTextListener{
 		 dbAdapter = new DBAdapter(getApplicationContext());
 	     dbAdapter.openDataBase();
 		 ActionBar ab = getActionBar(); 
-	     ab.setDisplayHomeAsUpEnabled(true);
-	     ab.setHomeButtonEnabled(true);
-	     ab.setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		// ab.setDisplayHomeAsUpEnabled(true);
+		ab.setHomeButtonEnabled(true);
+		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	       
 			
 			lv = (ListView)findViewById(id.listSunnah);
@@ -112,9 +109,7 @@ public class ActivitySunnah extends Activity implements OnQueryTextListener{
 			        startActivity(home);  
 	            return true;
 	            default:
-	            return super.onOptionsItemSelected(item); 
-	            
-	           
+	            return super.onOptionsItemSelected(item);        
 	    }
 	}
 

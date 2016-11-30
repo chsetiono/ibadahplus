@@ -10,8 +10,8 @@
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+       android:layout_width="match_parent"
+    android:layout_height="match_parent"
         android:layout_above="@+id/textView1"
         android:layout_toRightOf="@+id/textView1" >
 
@@ -27,7 +27,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Judul"
                 android:textColor="#09dd03"
-                android:textSize="20dp" />
+                android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/tanggal"
@@ -40,8 +40,8 @@
 
             <ImageView
                 android:id="@+id/imageNews"
-                android:layout_width="wrap_content"
-                android:layout_height="196dp"
+                android:layout_width="match_parent"
+                android:layout_height="196dip"
                 android:scaleType="fitXY"
                 android:src="@drawable/logo" />
 
@@ -50,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textSize="24dp"
                 android:text="Isi" />
             
              <TextView

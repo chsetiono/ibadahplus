@@ -33,7 +33,9 @@ import android.view.MenuItem;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shalawat);
         ActionBar ab = getActionBar(); 
-        ab.setDisplayHomeAsUpEnabled(true);
+		ab.setHomeButtonEnabled(true);
+	    ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
+	    ab.setTitle("Shalawat");
         dbAdapter = new DBAdapter(getApplicationContext());
         dbAdapter.openDataBase();
 		

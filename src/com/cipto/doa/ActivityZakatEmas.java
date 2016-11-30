@@ -4,49 +4,67 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ActivityZakatEmas extends Activity {
 	double nishabEmas=85;
 	double nishabPerak=595;
 	double zakatGram;
 	double zakatRupiah;
-	TextView etJumlahEmas;
-	TextView etJumlahPerak;
-	TextView etHargaEmas;
-	TextView etHargaPerak;
+	EditText etJumlahEmas;
+	EditText etJumlahPerak;
+	EditText etHargaEmas;
+	EditText etHargaPerak;
 	Button btHitung;
-	AlertDialog.Builder alertDialog;
+	
+	DBAdapter dbAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zakat_emas);
 		ActionBar ab = getActionBar(); 
-		// ab.setDisplayHomeAsUpEnabled(true);
 		ab.setHomeButtonEnabled(true);
 		ab.setIcon(getResources().getDrawable(R.drawable.icon_back));
 	    ab.setTitle("Zakat Emas dan Perak");
+	    dbAdapter=new DBAdapter(getApplicationContext());
+	    dbAdapter.openDataBase();
+	    String defaultEmas=dbAdapter.getSettings(DBAdapter.SETTING_HARGA_EMAS).getString(2);
+	    String defaultPerak=dbAdapter.getSettings(DBAdapter.SETTING_HARGA_PERAK).getString(2);
+	    etJumlahEmas=(EditText) findViewById(R.id.etJumlahEmas);
+	    etJumlahEmas.setBackgroundResource(R.drawable.edittext);
 	    
-	    etJumlahEmas=(TextView) findViewById(R.id.etJumlahEmas);
-	    etJumlahPerak=(TextView) findViewById(R.id.etJumlahPerak);
-	    etHargaEmas=(TextView) findViewById(R.id.etHargaEmas);
-	    etHargaPerak=(TextView) findViewById(R.id.etHargaPerak);
-	   
+	    etJumlahPerak=(EditText) findViewById(R.id.etJumlahPerak);
+	    etJumlahPerak.setBackgroundResource(R.drawable.edittext);
+	    
+	    etHargaEmas=(EditText) findViewById(R.id.etHargaEmas);
+	    etHargaEmas.setBackgroundResource(R.drawable.edittext);
+	    etHargaEmas.setText(defaultEmas);
+	    
+	    etHargaPerak=(EditText) findViewById(R.id.etHargaPerak);
+	    etHargaPerak.setBackgroundResource(R.drawable.edittext);
+	    etHargaPerak.setText(defaultPerak);
+	    
 	    btHitung=(Button) findViewById(R.id.btHitung);
-	    alertDialog= new AlertDialog.Builder(this);
-	    
+	    final Dialog alertDialog= new Dialog(this,R.style.DialogSetting);
+	    alertDialog.setContentView(R.layout.dialog_custom);
+	    final TextView etMessage=(TextView)  alertDialog.findViewById(R.id.dialog_text);
+	    Button btOk=(Button) alertDialog.findViewById(R.id.btOK);
+	    btOk.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+            	 alertDialog.dismiss();
+            }
+        });
+	    alertDialog.setTitle("Hasil Perhitungan");
 	    btHitung.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -88,10 +106,8 @@ public class ActivityZakatEmas extends Activity {
 					}else{
 						message=message+"Jumlah perak kurang dari nishab, Anda tidak diwajibkan membayar zakat Perak.";
 					}
-				
-					alertDialog.setMessage(message);
+					etMessage.setText(message);
 					alertDialog.show();
-					
 			}
 					
 		});
@@ -109,12 +125,11 @@ public class ActivityZakatEmas extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
   	  switch (item.getItemId()) {
   	  	    case android.R.id.home:
-  	    	Intent intentHome= new Intent(ActivityZakatEmas.this,Main.class);
+  	    	Intent intentHome= new Intent(ActivityZakatEmas.this,ActivityZakat.class);
   	  		startActivity(intentHome);
           return true;
   	  }
   	  return true;
   	}
-
 
 }

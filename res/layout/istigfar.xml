@@ -8,25 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Istigfar" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_marginTop="19dp"
-        android:text="اَسْتَغْفِرُ اَللّهَ الْعَظِیْمَ"
-        android:textSize="20dp" />
-
-    <ImageButton
-        android:id="@+id/BtSound"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignBottom="@+id/BtPlusIstighfar"
-        android:background="#ffffff"
-        android:scaleType="fitXY"
-        android:src="@drawable/icon_spund_on" />
-
     <ImageButton
         android:id="@+id/BtResetIstighfar"
         android:layout_width="40dp"
@@ -38,29 +19,42 @@
         android:src="@drawable/icon_reset" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/countIstighfar"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_marginBottom="30dp"
-        android:text="Aku mohon ampun kepada Allah yang Maha Agung" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
-        android:layout_alignLeft="@+id/btSound"
-        android:layout_marginBottom="26dp"
-        android:text="Astaghfirullah hal adzim" />
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignLeft="@+id/BtSound"
+        android:layout_below="@+id/arabIstighfar"
+        android:text="Astaghfirullah hal adzim"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:text="Aku mohon ampun kepada Allah yang Maha Agung"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/arabIstighfar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="اَسْتَغْفِرُ اَللّهَ الْعَظِیْمَ"
+        android:textSize="36dp" />
 
     <TextView
         android:id="@+id/countIstighfar"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
         android:text="0"
         android:textSize="36dp" />
 
@@ -68,11 +62,21 @@
         android:id="@+id/BtPlusIstighfar"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_below="@+id/countIstighfar"
+        android:layout_alignBottom="@+id/BtSound"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
         android:background="#ffffff"
         android:scaleType="fitXY"
         android:src="@drawable/icon_plus" />
+
+    <ImageButton
+        android:id="@+id/BtSound"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="11dp"
+        android:background="#ffffff"
+        android:scaleType="fitXY"
+        android:src="@drawable/sound_off" />
 
 </RelativeLayout>
